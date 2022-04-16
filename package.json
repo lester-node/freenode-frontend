@@ -10,9 +10,11 @@
     "lint:script": "eslint --fix --ext .js,.jsx,.ts,.tsx src",
     "lint:style": "stylelint --fix **/*.less"
   },
-  "gitHooks": {
-    "pre-commit": "lint-staged",
-    "commit-msg": "commitlint -e"
+  "husky":{
+    "hooks":{
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -e"
+    }
   },
   "lint-staged": {
     "*.less": [
@@ -52,6 +54,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.29.4",
+    "husky": "^7.0.4",
     "lint-staged": "^10.0.7",
     "prettier": "^2.2.0",
     "stylelint": "^14.7.0",
