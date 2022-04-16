@@ -11,12 +11,12 @@
     "lint:style": "stylelint --fix **/*.less"
   },
   "gitHooks": {
-    "pre-commit": "echo 我要提交代码啦",
+    "pre-commit": "lint-staged",
     "commit-msg": "commitlint -e"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
-      "prettier -c --write .",
+      "prettier -c --write \"src/**/*.{js,jsx,ts,tsx}\"",
       "eslint --fix --ext .js,.jsx,.ts,.tsx src"
     ]
   },

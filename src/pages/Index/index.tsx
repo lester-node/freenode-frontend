@@ -10,6 +10,8 @@ const IndexPage = () => {
 
 
 
+
+
       
       <h1 className={styles.title}>Page index</h1>
     </div>
