@@ -12,7 +12,7 @@
   },
   "gitHooks": {
     "pre-commit": "lint-staged",
-    "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    "commit-msg": "commitlint -e"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
