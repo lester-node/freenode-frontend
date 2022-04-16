@@ -16,7 +16,7 @@
   },
   "lint-staged": {
     "*.less": [
-      "stylelint --fix **/*.less"
+      "stylelint --fix ."
     ],
     "src/**/*.{js,jsx,ts,tsx}": [
       "prettier -c --write .",
