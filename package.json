@@ -16,7 +16,7 @@
   },
   "lint-staged": {
     "*.less": [
-      "stylelint --fix ."
+      "stylelint --fix"
     ],
     "src/**/*.{js,jsx,ts,tsx}": [
       "prettier -c --write .",
@@ -46,6 +46,8 @@
     "@typescript-eslint/parser": "^5.19.0",
     "@umijs/preset-react": "1.x",
     "@umijs/test": "^3.5.21",
+    "babel-plugin-import": "^1.13.5",
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "eslint": "^8.13.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.26.0",

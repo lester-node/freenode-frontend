@@ -4,7 +4,7 @@ module.exports = {
   rules: {
     'selector-pseudo-class-no-unknown': [
       true,
-      { ignorePseudoClasses: ['global','local'] },
+      { ignorePseudoClasses: ['global', 'local'] },
     ],
     'no-descending-specificity': null,
   },
