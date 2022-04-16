@@ -11,7 +11,7 @@
     "lint:style": "stylelint --fix **/*.less"
   },
   "gitHooks": {
-    "pre-commit": "lint-staged",
+    "pre-commit": "echo 我要提交代码啦",
     "commit-msg": "commitlint -e"
   },
   "lint-staged": {
