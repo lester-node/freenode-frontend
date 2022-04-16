@@ -10,11 +10,9 @@
     "lint:script": "eslint --fix --ext .js,.jsx,.ts,.tsx src",
     "lint:style": "stylelint --fix **/*.less"
   },
-  "husky":{
-    "hooks":{
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -e"
-    }
+  "gitHooks": {
+    "pre-commit": "lint-staged",
+    "commit-msg": "commitlint -e"
   },
   "lint-staged": {
     "*.less": [
@@ -28,7 +26,7 @@
   "dependencies": {
     "@ant-design/pro-layout": "^6.5.0",
     "ahooks": "^3.3.0",
-    "antd": "^4.19.5",
+    "antd": "^4.17.4",
     "axios": "^0.26.1",
     "echarts": "^5.3.2",
     "echarts-for-react": "^3.0.2",
@@ -54,12 +52,19 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.29.4",
-    "husky": "^7.0.4",
     "lint-staged": "^10.0.7",
     "prettier": "^2.2.0",
     "stylelint": "^14.7.0",
     "stylelint-config-standard": "^25.0.0",
     "typescript": "^4.1.2",
     "yorkie": "^2.0.0"
+  },
+  "rules": {
+    "generator-star-spacing": "off",
+    "no-tabs": "off",
+    "no-unused-vars": "off",
+    "no-console": "off",
+    "no-irregular-whitespace": "off",
+    "no-debugger": "off"
   }
 }
