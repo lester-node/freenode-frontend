@@ -1,0 +1,49 @@
+.layout {
+  min-height: 100vh;
+
+  .logo-big {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    font-weight: bold;
+  }
+
+  .logo-small {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+  }
+
+  .sider {
+    margin: 10px 0 10px 10px;
+  }
+
+  .content {
+    margin: 10px;
+    overflow-y: auto;
+    background-color: #fff;
+  }
+
+  .footer {
+    background-color: #fff;
+    margin: 0 10px 10px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  :global {
+    .ant-layout-footer {
+      padding: 10px 0;
+    }
+
+    .ant-layout-sider-trigger {
+      margin-bottom: 10px;
+    }
+  }
+}
