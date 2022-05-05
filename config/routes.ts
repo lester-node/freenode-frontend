@@ -2,22 +2,22 @@ export default [
   {
     path: '/',
     component: '@/pages/layouts',
-    routes:[
+    routes: [
       {
-        title:'前言',
-        path:'/',
+        title: '前言',
+        path: '/',
         component: '@/pages/preface',
       },
       {
-        title:'文章-HTML',
-        path:'/articleHtml',
+        title: '文章-HTML',
+        path: '/articleHtml',
         component: '@/pages/articleHtml',
       },
       {
-        title:'文章-CSS',
-        path:'/articleCss',
+        title: '文章-CSS',
+        path: '/articleCss',
         component: '@/pages/articleCss',
       },
-    ]
+    ],
   },
 ];

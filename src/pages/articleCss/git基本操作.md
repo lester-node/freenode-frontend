@@ -1,64 +1,107 @@
-<p align="center">
-  <a href="https://github.com/uiwjs/react-markdown-editor/issues">
-    <img src="https://img.shields.io/github/issues/uiwjs/react-markdown-editor.svg">
-  </a>
-  <a href="https://github.com/uiwjs/react-markdown-editor/network">
-    <img src="https://img.shields.io/github/forks/uiwjs/react-markdown-editor.svg">
-  </a>
-  <a href="https://github.com/uiwjs/react-markdown-editor/stargazers">
-    <img src="https://img.shields.io/github/stars/uiwjs/react-markdown-editor.svg">
-  </a>
-  <a href="https://github.com/uiwjs/react-markdown-editor/releases">
-    <img src="https://img.shields.io/github/release/uiwjs/react-markdown-editor.svg">
-  </a>
-  <a href="https://www.npmjs.com/package/@uiw/react-markdown-editor">
-    <img src="https://img.shields.io/npm/v/@uiw/react-markdown-editor.svg">
-  </a>
-</p>
+# A demo of `react-markdown`
 
-<p align="center">
-  A markdown editor with preview, implemented with React.js and TypeScript.
-</p>
+`react-markdown` is a markdown component for React.
 
-## Install
+👉 Changes are re-rendered as you type.
 
-```JavaScript
-npm i @uiw/react-markdown-editor
-fffffffffffff
+👈 Try writing some markdown on the left.
+
+## Overview
+
+* Follows [CommonMark](https://commonmark.org)
+* Optionally follows [GitHub Flavored Markdown](https://github.github.com/gfm/)
+* Renders actual React elements instead of using `dangerouslySetInnerHTML`
+* Lets you define your own components (to render `MyHeading` instead of `h1`)
+* Has a lot of plugins
+
+## Table of contents
+
+Here is an example of a plugin in action
+([`remark-toc`](https://github.com/remarkjs/remark-toc)).
+This section is replaced by an actual table of contents.
+
+## Syntax highlighting
+
+Here is an example of a plugin to highlight code:
+[`rehype-highlight`](https://github.com/rehypejs/rehype-highlight).
+
+```js
+import React from 'react'
+import ReactDOM from 'react-dom'
+import ReactMarkdown from 'react-markdown'
+import rehypeHighlight from 'rehype-highlight'
+
+ReactDOM.render(
+  <ReactMarkdown rehypePlugins={[rehypeHighlight]}>{'# Your markdown here'}</ReactMarkdown>,
+  document.querySelector('#content')
+)
 ```
 
-## Document
+Pretty neat, eh?
 
-Official document [demo preview](https://uiwjs.github.io/react-markdown-editor/) ([🇨🇳中国镜像网站](http://uiw.gitee.io/react-markdown-editor/))
+## GitHub flavored markdown (GFM)
 
-## Basic Usage
+For GFM, you can *also* use a plugin:
+[`remark-gfm`](https://github.com/remarkjs/react-markdown#use).
+It adds support for GitHub-specific extensions to the language:
+tables, strikethrough, tasklists, and literal URLs.
 
-A paragraph with *emphasis* and **strong importance**.
+These features **do not work by default**.
+👆 Use the toggle above to add the plugin.
 
-> A block quote with ~strikethrough~ and a URL: https://reactjs.org.
+| Feature    | Support              |
+| ---------: | :------------------- |
+| CommonMark | 100%                 |
+| GFM        | 100% w/ `remark-gfm` |
 
-* Lists
-* [ ] todo
-* [x] done
+~~strikethrough~~
 
-A table:
+* [ ] task list
+* [x] checked item
 
-| a | b |
-| - | - |
-| 1 | 2 |
+https://example.com
 
-1. 查看用户名和邮箱
+## HTML in markdown
 
-   ```javascript
-   $ git config user.name
-   $ git config user.mail
-   ```
+⚠️ HTML in markdown is quite unsafe, but if you want to support it, you can
+use [`rehype-raw`](https://github.com/rehypejs/rehype-raw).
+You should probably combine it with
+[`rehype-sanitize`](https://github.com/rehypejs/rehype-sanitize).
 
-2. 修改用户名和邮箱
+<blockquote>
+  👆 Use the toggle above to add the plugin.
+</blockquote>
 
-   ```javascript
-   $ git config --global user.name "Lester"
-   $ git config --global user.mail "Lester@163.com"
-   ```
+## Components
 
-#### git设置ssh key
+You can pass components to change things:
+
+```js
+import React from 'react'
+import ReactDOM from 'react-dom'
+import ReactMarkdown from 'react-markdown'
+import MyFancyRule from './components/my-fancy-rule.js'
+
+ReactDOM.render(
+  <ReactMarkdown
+    components={{
+      // Use h2s instead of h1s
+      h1: 'h2',
+      // Use a component instead of hrs
+      hr: ({node, ...props}) => <MyFancyRule {...props} />
+    }}
+  >
+    # Your markdown here
+  </ReactMarkdown>,
+  document.querySelector('#content')
+)
+```
+
+## More info?
+
+Much more info is available in the
+[readme on GitHub](https://github.com/remarkjs/react-markdown)!
+
+***
+
+A component by [Espen Hovlandsdal](https://espen.codes/)
