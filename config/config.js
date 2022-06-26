@@ -17,7 +17,7 @@ export default defineConfig({
   extraBabelPlugins: [
     [
       'import',
-      { libraryName: 'antd', libraryDirectory: 'es', style: true },
+      { libraryName: 'antd', libraryDirectory: 'lib', style: true },
       'antd',
     ],
     ...(process.env.NODE_ENV == 'development'

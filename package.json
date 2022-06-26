@@ -8,7 +8,7 @@
     "test": "umi-test",
     "test:coverage": "umi-test --coverage",
     "lint:script": "eslint --fix --ext .js,.jsx,.ts,.tsx src",
-    "lint:style": "stylelint **/*.less --fix --custom-syntax postcss-less"
+    "lint:style": "stylelint src/**/*.less --fix --custom-syntax postcss-less"
   },
   "gitHooks": {
     "pre-commit": "lint-staged",
@@ -16,7 +16,7 @@
   },
   "lint-staged": {
     "*.less": [
-      "stylelint **/*.less --fix --custom-syntax postcss-less"
+      "stylelint src/**/*.less --fix --custom-syntax postcss-less"
     ],
     "src/**/*.{js,jsx,ts,tsx}": [
       "prettier -c --write .",
@@ -25,6 +25,8 @@
   },
   "dependencies": {
     "@ant-design/pro-layout": "^6.5.0",
+    "@toast-ui/editor-plugin-code-syntax-highlight": "^3.0.0",
+    "@toast-ui/react-editor": "^3.1.7",
     "ahooks": "^3.3.0",
     "antd": "^4.20.2",
     "axios": "^0.26.1",
@@ -34,21 +36,19 @@
     "markdown-navbar": "^1.4.3",
     "mathjs": "^10.4.3",
     "moment": "^2.29.2",
+    "prismjs": "^1.28.0",
     "react": "17.x",
     "react-dom": "17.x",
-    "react-markdown": "^8.0.3",
-    "react-syntax-highlighter": "^15.5.0",
-    "rehype-raw": "^6.1.1",
-    "remark-gfm": "^3.0.1",
     "umi": "^3.5.21"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",
     "@commitlint/config-conventional": "^16.2.1",
+    "@types/lodash": "^4.14.182",
     "@types/markdown-navbar": "^1.4.0",
+    "@types/prismjs": "^1.26.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
-    "@types/react-syntax-highlighter": "^15.5.1",
     "@typescript-eslint/eslint-plugin": "^5.19.0",
     "@typescript-eslint/parser": "^5.19.0",
     "@umijs/preset-react": "1.x",
