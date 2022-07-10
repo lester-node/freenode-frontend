@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+  <title>高效率开发学习</title>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script src="./resources/js/jquery.min.js"></script>
+  <script>
+    (function () {
+      $("html").attr("style", "font-size: 16px");
+    })()
+    //此函数主要用于pc端的响应，不管页面怎么变化，整体布局不变，用时rootValue为100
+    // (function () {
+    //   //$(window).width()的宽度=window.innerWidth-滚动条宽度
+    //   var windowWidth = $(window).width();
+    //   window.scaleRate = windowWidth / 1920;
+    //   var fontSize = scaleRate * 100;
+    //   $("html").attr("style", "font-size:" + fontSize + "px");
+    //   $(window).resize(function () {
+    //     windowWidth = $(window).width();
+    //     window.scaleRate = windowWidth / 1920;
+    //     fontSize = scaleRate * 100;
+    //     $("html").attr("style", "font-size:" + fontSize + "px");
+    //   });
+    // })()
+
+  </script>
+</body>
+
+</html>

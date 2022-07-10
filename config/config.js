@@ -1,4 +1,5 @@
 import { defineConfig } from 'umi';
+import px2rem from 'postcss-plugin-px2rem';
 import routes from './routes';
 import proxy from './proxy';
 
@@ -14,6 +15,7 @@ export default defineConfig({
     ie: 11,
   },
   publicPath: './',
+  headScripts: [{ src: `./resources/js/jquery.min.js` }],
   extraBabelPlugins: [
     [
       'import',
@@ -60,4 +62,12 @@ export default defineConfig({
           });
         },
       }),
+  extraPostCSSPlugins: [
+    px2rem({
+      //rootValue不是根元素的font-size，是css中px的缩放比例，例如根元素font-size为16px，css元素高为100px，则元素高为16px
+      rootValue: 16,
+      selectorWhiteList: ['Mui'],
+      exclude: /node_modules|global.less/i,
+    }),
+  ],
 });
