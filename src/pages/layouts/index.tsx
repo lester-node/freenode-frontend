@@ -1,17 +1,20 @@
-import {} from 'antd';
+import { ConfigProvider } from 'antd';
 import styles from './index.less';
+import zhCN from 'antd/es/locale/zh_CN';
 import React, { useState } from 'react';
 import {
   CaretDownFilled,
   AlignLeftOutlined,
-  GithubFilled,
-  WechatFilled,
-  QqCircleFilled,
 } from '@ant-design/icons';
 import { history } from 'umi';
 
-export default () => {
+export default (props: any) => {
+  const [active, setActive] = useState('首页');
   const menu = [
+    {
+      name: '首页',
+      jump: '',
+    },
     {
       name: '笔记',
       children: [
@@ -24,81 +27,80 @@ export default () => {
       ],
     },
     {
-      name: '错题集',
-      children: [
-        {
-          name: 'CSS',
-        },
-        {
-          name: 'JS',
-        },
-      ],
-    },
-    {
-      name: '作品',
+      name: '文章',
+      jump: 'article',
     },
     {
       name: '关于',
+    },
+    {
+      name: '后台',
     },
   ];
 
   return (
     <div className={styles.layout}>
       <div className={styles.header}>
-        <div className={styles.title}>高效率开发学习</div>
+        <div
+          className={styles.title}
+          onClick={() => {
+            setActive('首页');
+            history.push('/');
+          }}
+        >
+          高效率开发学习
+        </div>
         <div className={styles.menu}>
-          {menu.map((item) => {
-            return (
-              <div className={styles.nav}>
-                <span>{item.name}</span>
-                {item.name == '关于' || item.name == '作品' ? (
-                  <AlignLeftOutlined />
-                ) : (
+          {menu.map((item, index) => {
+            if (item.children) {
+              return (
+                <div className={styles.nav} key={index}>
+                  <span>{item.name}</span>
                   <CaretDownFilled />
-                )}
-                <div className={styles.dropDown}>
-                  {item.children &&
-                    item.children.map((itemA) => {
-                      return <div>{itemA.name}</div>;
-                    })}
+                  <div className={styles.dropDown}>
+                    {item.children &&
+                      item.children.map((itemA: any, indexA) => {
+                        return (
+                          <div
+                            key={indexA}
+                            onClick={() => {
+                              setActive(itemA.name);
+                              //history.push不会刷新页面，只会刷新props.children部分，但window.location.href会刷新页面
+                              history.push(itemA.jump || '');
+                            }}
+                            className={`${
+                              itemA.name == active ? styles.active : null
+                            }`}
+                          >
+                            {itemA.name}
+                          </div>
+                        );
+                      })}
+                  </div>
                 </div>
-              </div>
-            );
+              );
+            } else {
+              return (
+                <div
+                  className={`${styles.nav} ${
+                    item.name == active ? styles.active : null
+                  }`}
+                  key={index}
+                  onClick={() => {
+                    setActive(item.name);
+                    history.push(item.jump || '');
+                  }}
+                >
+                  <span>{item.name}</span>
+                  <AlignLeftOutlined />
+                </div>
+              );
+            }
           })}
         </div>
       </div>
       <div className={styles.main}>
-        <div className={styles.font}>
-          <div>Hello！欢迎观看我的小破站！</div>
-          <div>此网站是我对于前端开发的总结和理解，记录下我的奇思妙想。</div>
-          <div>如有错误的地方，请一定要指出，相互交流开发心得。</div>
-          <div>
-            目前两年前端工作经验（<a>个人简历</a>
-            ），如有好的工作或者兼职机会，也欢迎联系。
-          </div>
-        </div>
-        <div className={styles.icon}>
-          <div>
-            <GithubFilled
-              onClick={() => {
-                window.open('https://github.com/blog-code');
-              }}
-            />
-          </div>
-          <div className={styles.showImg}>
-            <WechatFilled />
-            {/* 使用相对地址必须使用require，不使用会去找public文件夹里面  */}
-            <img
-              src={require('./imgs/weixin.jpg')}
-              alt=""
-              className={styles.imgTwo}
-            />
-          </div>
-          <div className={styles.showImg}>
-            <QqCircleFilled />
-            <img src={require('./imgs/qq.jpg')} alt="" />
-          </div>
-        </div>
+        <ConfigProvider locale={zhCN}>{props.children}</ConfigProvider>
       </div>
       <div className={styles.footer}>
         <div>Copyright © 2022 高效率开发学习</div>
