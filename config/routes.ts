@@ -13,6 +13,11 @@ export default [
         path: 'article',
         component: '@/pages/article',
       },
+      {
+        title: '文档',
+        path: 'articleDetail',
+        component: '@/pages/articleDetail',
+      },
     ],
   },
 ];
