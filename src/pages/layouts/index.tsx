@@ -9,7 +9,7 @@ import {
 import { history } from 'umi';
 
 export default (props: any) => {
-  const [active, setActive] = useState('文章');
+  const [active, setActive] = useState('首页');
   const menu = [
     {
       name: '首页',
