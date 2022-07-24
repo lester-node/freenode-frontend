@@ -1,6 +1,6 @@
 export default {
   '/v1': {
-    target: 'http://localhost:3000',
+    target: 'http://localhost:8000',
     changeOrigin: true,
   },
 };

@@ -1,22 +1,39 @@
 import { ConfigProvider } from 'antd';
 import styles from './index.less';
 import zhCN from 'antd/es/locale/zh_CN';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   CaretDownFilled,
-  AlignLeftOutlined,
+  HomeOutlined,
+  FileTextOutlined,
+  UserSwitchOutlined,
+  RocketOutlined,
 } from '@ant-design/icons';
 import { history } from 'umi';
 
 export default (props: any) => {
   const [active, setActive] = useState('首页');
+
+  useEffect(() => {
+    let pathname = window.location.pathname;
+    if (pathname.includes('articleDetail') || pathname.includes('article')) {
+      setActive('文章');
+    }
+  });
+
   const menu = [
     {
       name: '首页',
-      jump: '',
+      icon: <HomeOutlined />,
+      onClick: (name: string) => {
+        setActive(name);
+        //history.push不会刷新页面，只会刷新props.children部分，但window.location.href会刷新页面
+        history.push('/');
+      },
     },
     {
-      name: '笔记',
+      name: '教程',
+      icon: <CaretDownFilled />,
       children: [
         {
           name: 'CSS',
@@ -28,13 +45,26 @@ export default (props: any) => {
     },
     {
       name: '文章',
-      jump: 'article',
+      icon: <FileTextOutlined />,
+      onClick: (name: string) => {
+        setActive(name);
+        history.push('article');
+      },
     },
-    {
-      name: '关于',
-    },
+    // {
+    //   name: '关于',
+    //   icon: <UserSwitchOutlined />,
+    //   onClick: (name: string) => {
+    //     setActive(name);
+    //     history.push('about');
+    //   },
+    // },
     {
       name: '后台',
+      icon: <RocketOutlined />,
+      onClick: (name: string) => {
+        window.open('http://www.freenode.cn:3000');
+      },
     },
   ];
 
@@ -56,7 +86,7 @@ export default (props: any) => {
               return (
                 <div className={styles.nav} key={index}>
                   <span>{item.name}</span>
-                  <CaretDownFilled />
+                  {item.icon}
                   <div className={styles.dropDown}>
                     {item.children &&
                       item.children.map((itemA: any, indexA) => {
@@ -64,9 +94,7 @@ export default (props: any) => {
                           <div
                             key={indexA}
                             onClick={() => {
-                              setActive(itemA.name);
-                              //history.push不会刷新页面，只会刷新props.children部分，但window.location.href会刷新页面
-                              history.push(itemA.jump || '');
+                              itemA.onClick && itemA.onClick(itemA.name);
                             }}
                             className={`${
                               itemA.name == active ? styles.active : null
@@ -87,19 +115,18 @@ export default (props: any) => {
                   }`}
                   key={index}
                   onClick={() => {
-                    setActive(item.name);
-                    history.push(item.jump || '');
+                    item.onClick && item.onClick(item.name);
                   }}
                 >
                   <span>{item.name}</span>
-                  <AlignLeftOutlined />
+                  {item.icon}
                 </div>
               );
             }
           })}
         </div>
       </div>
-      <div className={styles.main}>
+      <div className={styles.midder}>
         <ConfigProvider locale={zhCN}>{props.children}</ConfigProvider>
       </div>
       <div className={styles.footer}>

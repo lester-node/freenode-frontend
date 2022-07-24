@@ -9,15 +9,101 @@
   text-align: center;
   line-height: 2.5;
   //注意：会选中.font的第一个div子元素
-  .font div:first-child {
-    font-size: 36px;
-    font-weight: 800;
+  .font {
+    & > div:first-child {
+      font-size: 36px;
+      font-weight: 800;
+    }
+    .personAbility {
+      display: inline-block;
+      color: #40b27e;
+      position: relative;
+      cursor: pointer;
+      &:hover {
+        .showPersonAbility {
+          display: block;
+        }
+      }
+      .showPersonAbility {
+        display: none;
+        padding-top: 15px;
+        color: #000;
+        box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.2);
+        background-color: #fff;
+        position: absolute;
+        top: 0;
+        left: 110%;
+        width: 420px;
+        line-height: 1.5;
+        font-size: 20px;
+        text-align: left;
+        border-radius: 4px;
+        z-index: 1;
+        li {
+          .grade {
+            padding-right: 10px;
+            :global {
+              .ant-rate-star-first .anticon,
+              .ant-rate-star-second .anticon {
+                padding-bottom: 4px;
+              }
+            }
+          }
+        }
+      }
+    }
   }
-  a {
-    color: #40b27e;
+  .middle {
+    display: flex;
+    flex-direction: row;
+    padding: 25px 0 50px 0;
+    .middleDiv {
+      display: flex;
+      flex-direction: row;
+      padding: 0 10px;
+      width: 170px;
+      height: 100px;
+      margin-right: 30px;
+      cursor: pointer;
+      div:nth-child(1) {
+        width: 50px;
+        font-size: 18px;
+      }
+      div:nth-child(2) {
+        font-size: 60px;
+        width: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    .middleDiv:nth-child(1) {
+      box-shadow: 0px 0px 16px rgb(130, 224, 170);
+      div:nth-child(2) {
+        color: rgb(130, 224, 170);
+      }
+    }
+    .middleDiv:nth-child(2) {
+      box-shadow: 0px 0px 16px rgb(248, 196, 113);
+      div:nth-child(2) {
+        color: rgb(248, 196, 113);
+      }
+    }
+    .middleDiv:nth-child(3) {
+      box-shadow: 0px 0px 16px rgb(133, 193, 233);
+      div:nth-child(2) {
+        color: rgb(133, 193, 233);
+      }
+    }
+    .middleDiv:nth-child(4) {
+      box-shadow: 0px 0px 16px rgb(215, 189, 226);
+      div:nth-child(2) {
+        color: rgb(215, 189, 226);
+      }
+    }
   }
   .icon {
-    width: 200px;
+    width: 270px;
     font-size: 30px;
     cursor: pointer;
     display: flex;
@@ -33,12 +119,31 @@
         box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.2);
       }
     }
+    .showEmail{
+      position: relative;
+      .email {
+        display: none;
+        position: absolute;
+        width: 280px;
+        top: 60px;
+        left: 0;
+        font-size: 18px;
+        color: #000;
+        background-color: #fff;
+        box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.2);
+      }
+    }
     div {
       &:hover {
         color: #40b27e;
       }
-      &:not(:nth-child(1)):hover {
+      &:nth-child(2):hover,&:nth-child(3):hover {
         img {
+          display: block;
+        }
+      }
+      &:nth-child(4):hover{
+        .email{
           display: block;
         }
       }

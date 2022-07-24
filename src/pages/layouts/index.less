@@ -2,12 +2,17 @@
   width: 100vw;
   height: 100vh;
   .header {
+    width: 100%;
     height: 50px;
     padding: 5px 20px;
     box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.2);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    //中间部分改为absolute，bfc?
+    position: fixed;
+    background-color: #fff;
+    z-index: 1;
     .title {
       cursor: pointer;
       font-size: 20px;
@@ -64,6 +69,9 @@
       }
     }
   }
+  .midder{
+    padding-top: 50px;
+  }
   .footer{
     text-align: center;
     line-height: 2.5;
@@ -75,6 +83,6 @@
 
 @media (max-width: 768px) {
   .layout {
-    background-color: aqua;
+    // background-color: aqua;
   }
 }

@@ -18,6 +18,11 @@ export default [
         path: 'articleDetail',
         component: '@/pages/articleDetail',
       },
+      {
+        title: '关于',
+        path: 'about',
+        component: '@/pages/about',
+      },
     ],
   },
 ];

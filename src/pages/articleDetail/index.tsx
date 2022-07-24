@@ -6,11 +6,7 @@ import api from './service';
 import { message } from 'antd';
 import { Viewer } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/i18n/zh-cn';
-import Prism from 'prismjs';
 import './style/toastui-editor-viewer.css';
-import './style/prism-tomorrow.css';
-import 'prismjs/components/prism-clojure.js';
-import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight';
 import _ from 'lodash';
 
 const Index = (props: any) => {
@@ -45,7 +41,6 @@ const Index = (props: any) => {
       <div className={styles.content}>
         {!_.isEmpty(articleData) ? (
           <Viewer
-            plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
             initialValue={articleData.content}
           />
         ) : null}
