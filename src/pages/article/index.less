@@ -1,23 +1,76 @@
-.main{
+.main {
   width: 100vw;
   padding: 30px 100px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  .data{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 10px;
-  }
-  .dataPagination{
-    text-align: center;
-    :global{
-      .ant-pagination-item-active{
-        border-color: #40b27e;
+  flex-direction: row;
+  .left {
+    width: 30%;
+    padding-right: 20px;
+    .block {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #dfdfdf;
+      box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      margin-bottom: 20px;
+      .title {
+        font-size: 18px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #dfdfdf;
       }
-      .ant-pagination-item-active a{
-        color: #40b27e;
+      .bigBlock {
+        padding-top: 15px;
+        flex-direction: row;
+        .smallBlock {
+          cursor: pointer;
+          font-size: 14px;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          width: 31.3%;
+          height: 30px;
+          color: #fff;
+          margin: 0 3% 3% 0;
+          opacity: 0.7;
+        }
+        .smallBlock:nth-child(3n) {
+          margin: 0;
+        }
+        .smallBlock:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  .right {
+    width: 70%;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.2);
+    .title {
+      font-size: 18px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #dfdfdf;
+    }
+    .bigBlock {
+      padding-top: 15px;
+      .data {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 10px;
+      }
+      .dataPagination {
+        text-align: center;
+        :global {
+          .ant-pagination-item-active {
+            border: 0;
+            border-bottom: 3px solid #40b27e;
+          }
+          .ant-pagination-item-active a {
+            color: #40b27e;
+          }
+        }
       }
     }
   }
