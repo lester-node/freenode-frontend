@@ -6,6 +6,8 @@ const config = {
   TABLEPARAMS: {
     page: 1,
     rows: 10,
+    classifyId: '',
+    tagId: '',
   },
   COLOR_1: [
     'CBE896',
@@ -19,7 +21,7 @@ const config = {
     'FF6B6B',
     '47E5BC',
   ],
-  COLOR_2:[
+  COLOR_2: [
     '1C0F13',
     '6E7E85',
     'B7CECE',
@@ -29,8 +31,8 @@ const config = {
     'BAD29F',
     '909A9F',
     '2C497F',
-    '3D2B56'
-  ]
+    '3D2B56',
+  ],
 };
 
 export default config;

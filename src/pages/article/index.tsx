@@ -14,7 +14,7 @@ const Index = () => {
 
   useEffect(() => {
     articlePageRun(tableParams);
-  }, [tableParams.page]);
+  }, [tableParams.page, tableParams.tagId, tableParams.classifyId]);
 
   const { run: articlePageRun } = useRequest((obj) => api.articlePage(obj), {
     manual: true,
@@ -33,7 +33,7 @@ const Index = () => {
     },
   });
 
-  const { run: classifyEnumRun } = useRequest(() => api.classifyEnum({}), {
+  const { run: classifyEnumRun } = useRequest(() => api.classifyList({}), {
     manual: false,
     onSuccess: (res: any) => {
       if (res.result === 0) {
@@ -73,8 +73,18 @@ const Index = () => {
                   <div
                     style={{ backgroundColor: `#${config.COLOR_1[index]}` }}
                     className={styles.smallBlock}
+                    onClick={() => {
+                      setTableParams({
+                        page: 1,
+                        rows: 10,
+                        classifyId: item.id,
+                        tagId: tableParams.tagId,
+                      });
+                    }}
                   >
-                    {item.name}
+                    {item.name == '全部'
+                      ? `${item.name}`
+                      : `${item.name}(${item.articleTotal})`}
                   </div>
                 );
               })}
@@ -88,6 +98,14 @@ const Index = () => {
                   <div
                     style={{ backgroundColor: `#${config.COLOR_2[index]}` }}
                     className={styles.smallBlock}
+                    onClick={() => {
+                      setTableParams({
+                        page: 1,
+                        rows: 10,
+                        tagId: item.id,
+                        classifyId: tableParams.classifyId,
+                      });
+                    }}
                   >
                     {item.name}
                   </div>
