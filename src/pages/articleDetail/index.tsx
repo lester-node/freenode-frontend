@@ -8,7 +8,12 @@ import { Viewer } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/i18n/zh-cn';
 import './style/toastui-editor-viewer.css';
 import _ from 'lodash';
-import { LeftOutlined, ClockCircleOutlined } from '@ant-design/icons';
+import {
+  LeftOutlined,
+  ClockCircleOutlined,
+  PushpinOutlined,
+  TagOutlined,
+} from '@ant-design/icons';
 import moment from 'moment';
 import { history } from 'umi';
 import MarkNav from 'markdown-navbar';
@@ -56,16 +61,29 @@ const Index = (props: any) => {
               返回文章列表
             </div>
             <div className={styles.middle}>
-              {articleData.classifyName ? (
-                <div className={styles.classify}>
-                  {articleData.classifyName}
-                </div>
-              ) : null}
               {articleData.title}
             </div>
             <div className={styles.right}>
-              <ClockCircleOutlined className={styles.icon} />
-              {moment(articleData.updatedAt).format('YYYY-MM-DD')}
+              {articleData.classifyName ? (
+                <div className={styles.classify}>
+                  <PushpinOutlined className={styles.icon} />
+                  {articleData.classifyName}
+                </div>
+              ) : null}
+              {articleData.tagName
+                ? articleData.tagName.split(',').map((name: string) => {
+                    return (
+                      <div className={styles.tag}>
+                        <TagOutlined className={styles.icon} />
+                        <div>{name}</div>
+                      </div>
+                    );
+                  })
+                : null}
+              <div className={styles.time}>
+                <ClockCircleOutlined className={styles.icon} />
+                {moment(articleData.updatedAt).format('YYYY-MM-DD')}
+              </div>
             </div>
           </div>
           {!_.isEmpty(articleData) ? (

@@ -194,7 +194,7 @@ const Index = () => {
               </ol>
             </div>
           </div>
-          ），如有好的工作或者兼职机会，也欢迎联系。
+          ），如有好的兼职或开源项目的机会，也欢迎联系。
         </div>
       </div>
       <div className={styles.icon}>
@@ -224,7 +224,12 @@ const Index = () => {
         </div>
       </div>
       <div className={styles.middle}>
-        <div className={styles.middleDiv}>
+        <div
+          className={styles.middleDiv}
+          onClick={() => {
+            history.push('course');
+          }}
+        >
           <div>教程</div>
           <div>{total.article}</div>
         </div>

@@ -106,7 +106,7 @@ table.ProseMirror-selectednode {
 
 .toastui-editor-contents h3 {
   font-size: 20px;
-  margin: 18px 0 2px;
+  /* margin: 18px 0 2px; */
 }
 
 .toastui-editor-contents h4 {

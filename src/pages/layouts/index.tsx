@@ -8,6 +8,7 @@ import {
   FileTextOutlined,
   UserSwitchOutlined,
   RocketOutlined,
+  ReadOutlined,
 } from '@ant-design/icons';
 import { history } from 'umi';
 
@@ -18,6 +19,9 @@ export default (props: any) => {
     let pathname = window.location.pathname;
     if (pathname.includes('articleDetail') || pathname.includes('article')) {
       setActive('文章');
+    }
+    if (pathname.includes('course')) {
+      setActive('教程');
     }
   });
 
@@ -33,15 +37,11 @@ export default (props: any) => {
     },
     {
       name: '教程',
-      icon: <CaretDownFilled />,
-      children: [
-        {
-          name: 'CSS',
-        },
-        {
-          name: 'JS',
-        },
-      ],
+      icon: <ReadOutlined />,
+      onClick: (name: string) => {
+        setActive(name);
+        history.push('course');
+      },
     },
     {
       name: '文章',
@@ -51,6 +51,18 @@ export default (props: any) => {
         history.push('article');
       },
     },
+    // {
+    //   name: '其他',
+    //   icon: <CaretDownFilled />,
+    //   children: [
+    //     {
+    //       name: '其他1',
+    //     },
+    //     {
+    //       name: '其他2',
+    //     },
+    //   ],
+    // },
     // {
     //   name: '关于',
     //   icon: <UserSwitchOutlined />,

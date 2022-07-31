@@ -47,7 +47,7 @@ const Index = () => {
     },
   });
 
-  const { run: tagPageRun } = useRequest(() => api.tagEnum({}), {
+  const { run: tagPageRun } = useRequest(() => api.tagList({}), {
     manual: false,
     onSuccess: (res: any) => {
       if (res.result === 0) {
@@ -107,7 +107,9 @@ const Index = () => {
                       });
                     }}
                   >
-                    {item.name}
+                    {item.name == '全部'
+                      ? `${item.name}`
+                      : `${item.name}(${item.articleTotal})`}
                   </div>
                 );
               })}
