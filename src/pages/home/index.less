@@ -1,5 +1,7 @@
+@import '../../style/page.less';
+
 .main {
-  width: 100vw;
+  width: 100%;
   padding: 30px 100px;
   display: flex;
   flex-direction: column;
@@ -16,7 +18,7 @@
     }
     .personAbility {
       display: inline-block;
-      color: #40b27e;
+      color: @primary-color;
       position: relative;
       cursor: pointer;
       &:hover {
@@ -135,7 +137,7 @@
     }
     div {
       &:hover {
-        color: #40b27e;
+        color: @primary-color;
       }
       &:nth-child(2):hover,&:nth-child(3):hover {
         img {

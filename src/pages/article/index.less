@@ -1,5 +1,8 @@
+@import '../../style/page.less';
+
+
 .main {
-  width: 100vw;
+  width: 100%;
   padding: 30px 100px;
   display: flex;
   flex-direction: row;
@@ -65,10 +68,10 @@
         :global {
           .ant-pagination-item-active {
             border: 0;
-            border-bottom: 3px solid #40b27e;
+            border-bottom: 3px solid @primary-color;
           }
           .ant-pagination-item-active a {
-            color: #40b27e;
+            color: @primary-color;
           }
         }
       }
