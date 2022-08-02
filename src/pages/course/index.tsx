@@ -1,11 +1,21 @@
-import styles from './index.less'; 
-import React, { useEffect, useState } from 'react';
+import styles from './index.less';
+import React, { useEffect, useRef, useState } from 'react';
 import useRequest from '@ahooksjs/use-request';
-import { Tree } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
-import type { DataNode, DirectoryTreeProps } from 'antd/es/tree';
+import { message, Tree } from 'antd';
+import type { DirectoryTreeProps } from 'antd/es/tree';
+import api from './service';
+import { Viewer } from '@toast-ui/react-editor';
+import '@toast-ui/editor/dist/i18n/zh-cn';
+import '../../style/toastui-editor-viewer.css';
+import MarkNav from 'markdown-navbar';
+import 'markdown-navbar/dist/navbar.css';
+import _ from 'lodash';
 
 const Index = () => {
+  const viewRef = useRef<any>();
+  const [treeData, setTreeData] = useState([]);
+  const [articleData, setArticleData] = useState<any>({});
+
   const scrollChange = () => {
     // 变量 scrollHeight 是滚动条的总高度
     let scrollHeight =
@@ -18,104 +28,91 @@ const Index = () => {
       document.documentElement.scrollTop || document.body.scrollTop;
     // 滚动条到底部得距离 = 滚动条的总高度 - 可视区的高度 - 当前页面的滚动条纵坐标位置
     var scrollBottom = scrollHeight - windowHeight - scrollTop;
-    if (scrollBottom < 105) {
-      document.getElementById('leftScroll').style.bottom =
-        105 - scrollBottom + 'px';
-    } else {
-      document.getElementById('leftScroll').style.bottom = 0;
+    //滚动的时候切换菜单又很小概率页面切过去了又触发了函数，判断是否存在
+    if (document.getElementById('leftScroll')) {
+      if (scrollBottom < 105) {
+        document.getElementById('leftScroll').style.bottom =
+          105 - scrollBottom + 'px';
+      } else {
+        document.getElementById('leftScroll').style.bottom = 0;
+      }
     }
   };
 
   useEffect(() => {
+    courseArticleSelectOneRun('2342b97c-a8e3-4f8e-a5f3-80ee2d5e42a9');
     // 滚动条滚动时触发
-    window.addEventListener('scroll', scrollChange, true);
+    window.addEventListener('scroll', scrollChange);
     return () => {
-      window.removeEventListener('scroll', scrollChange, false);
+      window.removeEventListener('scroll', scrollChange);
     };
   }, []);
 
-  const treeData: DataNode[] = [
-    {
-      title: 'parent 0',
-      key: '0-0',
-      children: [
-        { title: 'leaf 0-0', key: '0-0-0', isLeaf: true },
-        { title: 'leaf 0-1', key: '0-0-1', isLeaf: true },
-      ],
+  const { run: courseTreeRun } = useRequest(() => api.courseTree({}), {
+    manual: false,
+    onSuccess: (res: any) => {
+      if (res.result === 0) {
+        setTreeData(res.data);
+      } else {
+        message.error(res.message || '操作失败');
+      }
     },
-    {
-      title: 'parent 1',
-      key: '0-1',
-      children: [
-        { title: 'leaf 1-0', key: '0-1-0', isLeaf: true },
-        { title: 'leaf 1-1', key: '0-1-1', isLeaf: true },
-      ],
+    onError: (res: any) => {
+      message.error(res.message || '操作失败');
     },
+  });
+
+  const { run: courseArticleSelectOneRun } = useRequest(
+    (id) => api.courseArticleSelectOne({ id }),
     {
-      title: 'parent 2',
-      key: '0-2',
-      children: [
-        { title: 'leaf 2-0', key: '0-2-0', isLeaf: true },
-        { title: 'leaf 2-1', key: '0-2-1', isLeaf: true },
-      ],
+      manual: true,
+      onSuccess: (res: any) => {
+        if (res.result === 0) {
+          setArticleData(res.data);
+          viewRef.current.getInstance().setMarkdown(res.data.content);
+        } else {
+          message.error(res.message || '操作失败');
+        }
+      },
+      onError: (res: any) => {
+        message.error(res.message || '操作失败');
+      },
     },
-    {
-      title: 'parent 3',
-      key: '0-3',
-      children: [
-        { title: 'leaf 3-0', key: '0-3-0', isLeaf: true },
-        { title: 'leaf 3-1', key: '0-3-1', isLeaf: true },
-      ],
-    },
-    {
-      title: 'parent 4',
-      key: '0-4',
-      children: [
-        { title: 'leaf 4-0', key: '0-4-0', isLeaf: true },
-        { title: 'leaf 4-1', key: '0-4-1', isLeaf: true },
-      ],
-    },
-    {
-      title: 'parent 5',
-      key: '0-5',
-      children: [
-        { title: 'leaf 5-0', key: '0-5-0', isLeaf: true },
-        { title: 'leaf 5-1', key: '0-5-1', isLeaf: true },
-      ],
-    },
-    {
-      title: 'parent 6',
-      key: '0-6',
-      children: [
-        { title: '1111111111111111111111111111111111111111111111112', key: '0-6-0', isLeaf: true },
-        { title: 'leaf 6-1', key: '0-6-1', isLeaf: true },
-      ],
-    },
-    {
-      title: 'parent 7',
-      key: '0-7',
-      children: [
-        { title: 'leaf 7-0', key: '0-7-0', isLeaf: true },
-        { title: 'leaf 7-1', key: '0-7-1', isLeaf: true },
-      ],
-    },
-  ];
+  );
 
   const onSelect: DirectoryTreeProps['onSelect'] = (keys, info) => {
-    console.log('Trigger Select', keys, info);
+    if (info.node.isLeaf) {
+      setArticleData({});
+      courseArticleSelectOneRun(info.node.key);
+    }
   };
 
   return (
     <div>
       <div className={styles.main}>
         <div className={styles.left} id="leftScroll">
-          <Tree.DirectoryTree
-            treeData={treeData}
-            onSelect={onSelect}
-          />
+          {treeData.length ? (
+            <Tree.DirectoryTree
+              treeData={treeData}
+              onSelect={onSelect}
+              defaultExpandedKeys={['655507ea-664a-4700-a276-591d20ab1e22']}
+              defaultSelectedKeys={['2342b97c-a8e3-4f8e-a5f3-80ee2d5e42a9']}
+            />
+          ) : null}
         </div>
         <div className={styles.right}>
-          <div className={styles.div}>-----------2222---------------</div>
+          <div className={styles.articleLeft}>
+            <div className={styles.articleContent}>
+              <Viewer ref={viewRef} />
+            </div>
+          </div>
+          <div className={styles.articleRight}>
+            <MarkNav
+              className={styles.articleMenu}
+              source={articleData.content}
+              headingTopOffset={80}
+            />
+          </div>
         </div>
       </div>
     </div>

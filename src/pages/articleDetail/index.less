@@ -1,9 +1,11 @@
+@import '../../style/page.less';
+
 .main {
   display: flex;
   justify-content: center;
   padding-top: 30px;
   .content {
-    width: 1076px;
+    width: 1276px;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -14,10 +16,10 @@
       display: flex;
       flex-direction: column;
       .title {
-        width: 836px;
+        width: 1036px;
         font-size: 24px;
         padding-bottom: 5px;
-        border-bottom: 1px solid #40b27e;
+        border-bottom: 1px solid @primary-color;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -31,7 +33,7 @@
             padding-right: 5px;
           }
           &:hover {
-            color: #40b27e;
+            color: @primary-color;
           }
         }
         .middle {
@@ -55,7 +57,7 @@
             height: 80%;
             padding: 0 10px;
             border-radius: 12px;
-            background-color: #40b27e;
+            background-color: @primary-color;
           }
           .tag {
             color: #fff;
@@ -89,7 +91,7 @@
         }
       }
       .articleContent {
-        width: 836px;
+        width: 1036px;
       }
     }
     .right {
@@ -99,6 +101,11 @@
         position: fixed;
         width: 180px;
         line-break: anywhere;
+      }
+      :global{
+        .markdown-navigation .title-anchor.active{
+          color: @primary-color;
+        }
       }
     }
   }

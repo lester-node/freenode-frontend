@@ -12,18 +12,19 @@
     border-right: 1px solid #f1f1f1;
     padding: 20px;
     :global {
-      .ant-tree{
+      .ant-tree {
         font-size: 16px;
         overflow-x: hidden;
       }
-      .ant-tree .ant-tree-treenode{
+      .ant-tree .ant-tree-treenode {
         padding: 2px 2px 6px 2px;
       }
-      .ant-tree-title{
+      .ant-tree-title {
         padding-left: 2px;
         display: inline-block;
-        width: 45%;
         overflow: hidden;
+        width: 200px;
+        white-space: nowrap;
         text-overflow: ellipsis;
       }
       .ant-tree-switcher.ant-tree-switcher_close,
@@ -31,19 +32,40 @@
       .ant-tree-switcher.ant-tree-switcher-noop {
         display: none;
       }
-      .ant-tree.ant-tree-directory .ant-tree-treenode-selected:hover::before, .ant-tree.ant-tree-directory .ant-tree-treenode-selected::before{
+      .ant-tree.ant-tree-directory .ant-tree-treenode-selected:hover::before,
+      .ant-tree.ant-tree-directory .ant-tree-treenode-selected::before {
         background-color: @primary-color;
       }
-      .ant-tree-node-content-wrapper.ant-tree-node-content-wrapper-normal{
+      .ant-tree-node-content-wrapper.ant-tree-node-content-wrapper-normal {
         display: flex;
       }
     }
   }
   .right {
     width: calc(100vw - 320px);
-    margin-left: 300px;
-    .div {
-      height: 1000px;
+    margin-left: 320px;
+    padding-right: 220px;
+    display: flex;
+    justify-content: center;
+    .articleLeft {
+      .articleContent {
+        width: 1036px;
+      }
+    }
+    .articleRight {
+      padding-left: 20px;
+      padding-top: 10px;
+      position: relative;
+      .articleMenu {
+        position: fixed;
+        width: 180px;
+        line-break: anywhere;
+      }
+      :global {
+        .markdown-navigation .title-anchor.active {
+          color: @primary-color;
+        }
+      }
     }
   }
 }

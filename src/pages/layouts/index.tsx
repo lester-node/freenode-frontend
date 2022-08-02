@@ -74,7 +74,7 @@ export default (props: any) => {
     {
       name: '后台',
       icon: <RocketOutlined />,
-      onClick: (name: string) => {
+      onClick: () => {
         window.open('http://www.freenode.cn:3000');
       },
     },
@@ -93,7 +93,7 @@ export default (props: any) => {
           高效率开发学习
         </div>
         <div className={styles.menu}>
-          {menu.map((item, index) => {
+          {menu.map((item: any, index) => {
             if (item.children) {
               return (
                 <div className={styles.nav} key={index}>
@@ -101,7 +101,7 @@ export default (props: any) => {
                   {item.icon}
                   <div className={styles.dropDown}>
                     {item.children &&
-                      item.children.map((itemA: any, indexA) => {
+                      item.children.map((itemA: any, indexA: number) => {
                         return (
                           <div
                             key={indexA}

@@ -6,7 +6,7 @@ import api from './service';
 import { message } from 'antd';
 import { Viewer } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/i18n/zh-cn';
-import './style/toastui-editor-viewer.css';
+import '../../style/toastui-editor-viewer.css';
 import _ from 'lodash';
 import {
   LeftOutlined,
@@ -71,9 +71,9 @@ const Index = (props: any) => {
                 </div>
               ) : null}
               {articleData.tagName
-                ? articleData.tagName.split(',').map((name: string) => {
+                ? articleData.tagName.split(',').map((name: string,index:number) => {
                     return (
-                      <div className={styles.tag}>
+                      <div className={styles.tag} key={index}>
                         <TagOutlined className={styles.icon} />
                         <div>{name}</div>
                       </div>

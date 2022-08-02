@@ -123,7 +123,40 @@ const Index = () => {
                     disabled
                     className={styles.grade}
                   />
-                  JavaScript、React、Vue
+                  HTML、CSS、JavaScript
+                </li>
+                <li>
+                  <Rate
+                    defaultValue={4}
+                    character={({ index }: { index: number }) =>
+                      customIcons[index + 1]
+                    }
+                    disabled
+                    className={styles.grade}
+                  />
+                  React、Vue
+                </li>
+                <li>
+                  <Rate
+                    defaultValue={4}
+                    character={({ index }: { index: number }) =>
+                      customIcons[index + 1]
+                    }
+                    disabled
+                    className={styles.grade}
+                  />
+                  大屏可视化看板、WebGL
+                </li>
+                <li>
+                  <Rate
+                    defaultValue={4}
+                    character={({ index }: { index: number }) =>
+                      customIcons[index + 1]
+                    }
+                    disabled
+                    className={styles.grade}
+                  />
+                  Webpack、Gulp
                 </li>
                 <li>
                   <Rate
@@ -135,6 +168,17 @@ const Index = () => {
                     className={styles.grade}
                   />
                   uniapp、H5、小程序
+                </li>
+                <li>
+                  <Rate
+                    defaultValue={4}
+                    character={({ index }: { index: number }) =>
+                      customIcons[index + 1]
+                    }
+                    disabled
+                    className={styles.grade}
+                  />
+                  Git
                 </li>
                 <li>
                   <Rate
@@ -160,18 +204,7 @@ const Index = () => {
                 </li>
                 <li>
                   <Rate
-                    defaultValue={4}
-                    character={({ index }: { index: number }) =>
-                      customIcons[index + 1]
-                    }
-                    disabled
-                    className={styles.grade}
-                  />
-                  Git
-                </li>
-                <li>
-                  <Rate
-                    defaultValue={2}
+                    defaultValue={3}
                     character={({ index }: { index: number }) =>
                       customIcons[index + 1]
                     }
@@ -182,7 +215,7 @@ const Index = () => {
                 </li>
                 <li>
                   <Rate
-                    defaultValue={2}
+                    defaultValue={3}
                     character={({ index }: { index: number }) =>
                       customIcons[index + 1]
                     }

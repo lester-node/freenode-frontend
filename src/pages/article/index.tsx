@@ -71,6 +71,7 @@ const Index = () => {
               {classifyData.map((item: any, index: number) => {
                 return (
                   <div
+                    key={index}
                     style={{ backgroundColor: `#${config.COLOR_1[index]}` }}
                     className={styles.smallBlock}
                     onClick={() => {
@@ -96,6 +97,7 @@ const Index = () => {
               {tagData.map((item: any, index: number) => {
                 return (
                   <div
+                    key={index}
                     style={{ backgroundColor: `#${config.COLOR_2[index]}` }}
                     className={styles.smallBlock}
                     onClick={() => {
@@ -120,7 +122,7 @@ const Index = () => {
           <div className={styles.title}>最新文章</div>
           <div className={styles.bigBlock}>
             <div className={styles.data}>
-              {pageData.dataList.map((item, index) => (
+              {pageData.dataList.map((item:any, index) => (
                 <SingleArticle data={item} key={index} />
               ))}
             </div>
