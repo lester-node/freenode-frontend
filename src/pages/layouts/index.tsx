@@ -1,21 +1,33 @@
 import { ConfigProvider } from 'antd';
 import styles from './index.less';
 import zhCN from 'antd/es/locale/zh_CN';
-import React, { useEffect, useState } from 'react';
-import {
+import React, { useRef, useState } from 'react';
+import Icon, {
   CaretDownFilled,
   HomeOutlined,
   FileTextOutlined,
   UserSwitchOutlined,
   RocketOutlined,
   ReadOutlined,
+  MenuOutlined,
+  SearchOutlined,
 } from '@ant-design/icons';
 import { history } from 'umi';
+import { useMount, useSize } from 'ahooks';
 
 export default (props: any) => {
+  const ref = useRef();
+  const size: any = useSize(ref);
   const [active, setActive] = useState('首页');
+  const [menuOpen, setMenuOpen] = useState(true);
 
-  useEffect(() => {
+  if (size?.width < 768) {
+    // document.getElementById('menu').style.display = 'none';
+  } else if (size?.width > 768) {
+    document.getElementById('menu').style.display = 'flex';
+  }
+
+  useMount(() => {
     let pathname = window.location.pathname;
     if (pathname.includes('articleDetail') || pathname.includes('article')) {
       setActive('文章');
@@ -82,7 +94,15 @@ export default (props: any) => {
 
   return (
     <div className={styles.layout}>
-      <div className={styles.header}>
+      <div className={styles.header} ref={ref}>
+        <div
+          className={styles.phoneLeft}
+          onClick={() => {
+            setMenuOpen(!menuOpen);
+          }}
+        >
+          <MenuOutlined />
+        </div>
         <div
           className={styles.title}
           onClick={() => {
@@ -90,9 +110,17 @@ export default (props: any) => {
             history.push('/');
           }}
         >
-          高效率开发学习
+          <img src="./favicon.ico" />
+          <div>高效率开发学习</div>
         </div>
-        <div className={styles.menu}>
+        <div className={styles.phoneRight}>
+          <SearchOutlined />
+        </div>
+        <div
+          id="menu"
+          className={styles.menu}
+          style={{ display: menuOpen ? 'flex' : 'none' }}
+        >
           {menu.map((item: any, index) => {
             if (item.children) {
               return (
@@ -138,7 +166,11 @@ export default (props: any) => {
           })}
         </div>
       </div>
-      <div className={styles.midder}>
+      <div className={styles.midder} onClick={() => {
+        if (size?.width < 768){
+          setMenuOpen(false)
+        }
+      }}>
         <ConfigProvider locale={zhCN}>{props.children}</ConfigProvider>
       </div>
       <div className={styles.footer}>

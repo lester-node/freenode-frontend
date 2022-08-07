@@ -9,10 +9,9 @@
   align-items: center;
   font-size: 24px;
   text-align: center;
-  line-height: 2.5;
   //注意：会选中.font的第一个div子元素
   .font {
-    line-height: 3;
+    line-height: 2.5;
     & > div:first-child {
       font-size: 36px;
       font-weight: 800;
@@ -58,18 +57,20 @@
   .middle {
     display: flex;
     flex-direction: row;
-    padding: 25px 0 45px 0;
+    flex-wrap: wrap;
+    justify-content: center;
     .middleDiv {
       display: flex;
       flex-direction: row;
-      padding: 0 10px;
+      padding: 0 12px;
       width: 200px;
       height: 120px;
-      margin-right: 30px;
+      margin: 15px 15px 30px 15px;
       cursor: pointer;
       div:nth-child(1) {
         width: 50px;
         font-size: 24px;
+        padding-top: 5px;
       }
       div:nth-child(2) {
         font-size: 75px;
@@ -110,6 +111,7 @@
     cursor: pointer;
     display: flex;
     justify-content: space-around;
+    line-height: 2;
     .showImg {
       position: relative;
       img {
@@ -121,7 +123,7 @@
         box-shadow: @shadow;
       }
     }
-    .showEmail{
+    .showEmail {
       position: relative;
       .email {
         display: none;
@@ -139,13 +141,14 @@
       &:hover {
         color: @primary-color;
       }
-      &:nth-child(2):hover,&:nth-child(3):hover {
+      &:nth-child(2):hover,
+      &:nth-child(3):hover {
         img {
           display: block;
         }
       }
-      &:nth-child(4):hover{
-        .email{
+      &:nth-child(4):hover {
+        .email {
           display: block;
         }
       }
@@ -163,10 +166,16 @@
   //     font-weight: 800;
   //   }
   // }
+  &::after {
+    content: '';
+    height: 1px;
+    width: calc(100vw - 200px);
+    background-color: #e8eaed;
+  }
 }
-.main::after {
-  content: '';
-  height: 1px;
-  width: calc(100vw - 200px);
-  background-color: #e8eaed;
+
+@media (min-width: 0px) and (max-width: 1200px) {
+  .main {
+    padding: 20px 30px;
+  }
 }

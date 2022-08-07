@@ -105,7 +105,7 @@ const Index = () => {
   return (
     <div className={styles.main}>
       <div className={styles.font}>
-        <div>Hello！欢迎观看我的小破站（正在建设中）！</div>
+        <div>Hello！欢迎观看我的小破站！</div>
         <div>此网站是我对于前端开发的总结和理解，记录下我的奇思妙想。</div>
         <div>如有错误的地方，请一定要指出，相互交流开发心得。</div>
         <div>

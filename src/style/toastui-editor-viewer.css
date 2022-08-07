@@ -172,8 +172,8 @@ table.ProseMirror-selectednode {
   margin: 2px 0 8px;
   padding: 18px;
   color: #fff;
-  width: 1000px;
-  background-color: #2C2E34;
+  width: 50vw;
+  background-color: #2c2e34;
   border-radius: 3px;
   font-size: 14px;
 }
@@ -495,4 +495,16 @@ table.ProseMirror-selectednode {
   left: -1000px;
   top: -1000px;
   z-index: -1;
+}
+
+@media (min-width: 0px) and (max-width: 768px) {
+  .toastui-editor-contents pre {
+    width: 80vw;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  .toastui-editor-contents pre {
+    width: 65vw;
+  }
 }

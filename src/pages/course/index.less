@@ -5,11 +5,12 @@
   width: 100%;
   padding: 10px 10px 0 10px;
   .left {
-    width: 300px;
+    width: 20vw;
     height: calc(100vh - 60px);
     overflow-y: auto;
     position: fixed;
     border-right: 1px solid #f1f1f1;
+    background-color: #fff;
     padding: 20px;
     :global {
       .ant-tree {
@@ -23,9 +24,6 @@
         padding-left: 2px;
         display: inline-block;
         overflow: hidden;
-        width: 200px;
-        white-space: nowrap;
-        text-overflow: ellipsis;
       }
       .ant-tree-switcher.ant-tree-switcher_close,
       .ant-tree-switcher.ant-tree-switcher_open,
@@ -43,13 +41,13 @@
   }
   .right {
     width: calc(100vw - 320px);
-    margin-left: 320px;
+    margin-left: calc(20vw + 40px);
     padding-right: 220px;
     display: flex;
     justify-content: center;
     .articleLeft {
       .articleContent {
-        width: 1036px;
+        width: calc(50vw + 36px);
       }
     }
     .articleRight {
@@ -69,3 +67,46 @@
     }
   }
 }
+
+@media (min-width: 0px) and (max-width: 768px) {
+  .main {
+    .left{
+      display: none;
+    }
+    .right {
+      width: 100%;
+      margin-left: 0;
+      padding-right: 0;
+      .articleLeft {
+        .articleContent {
+          width: calc(80vw + 36px);
+        }
+      }
+      .articleRight {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  .main {
+    .left{
+      // display: none;
+    }
+    .right {
+      width: 100%;
+      margin-left: 20vw;
+      padding-right: 0;
+      .articleLeft {
+        .articleContent {
+          width: calc(65vw + 36px);
+        }
+      }
+      .articleRight {
+        display: none;
+      }
+    }
+  }
+}
+
