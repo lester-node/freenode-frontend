@@ -174,8 +174,45 @@
   }
 }
 
-@media (min-width: 0px) and (max-width: 1200px) {
+@media (min-width: 768px) and (max-width: 1200px) {
   .main {
     padding: 20px 30px;
+  }
+}
+
+@media (min-width: 0px) and (max-width: 768px) {
+  .main {
+    padding: 10px 20px;
+    font-size: 20px;
+    .font {
+      line-height: 2.5;
+      & > div:first-child {
+        font-size: 24px;
+        font-weight: bold;
+      }
+      .personAbility {
+        .showPersonAbility {
+          left: -275%;
+          width: 80vw;
+          li {
+            .grade {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+    .icon {
+      .showImg {
+        img {
+          left: -275%;
+        }
+      }
+      .showEmail {
+        .email {
+          left: -750%;
+        }
+      }
+    }
   }
 }

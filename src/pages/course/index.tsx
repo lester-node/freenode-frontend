@@ -1,5 +1,5 @@
 import styles from './index.less';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import useRequest from '@ahooksjs/use-request';
 import { message, Tree } from 'antd';
 import type { DirectoryTreeProps } from 'antd/es/tree';
@@ -10,13 +10,16 @@ import '../../style/toastui-editor-viewer.css';
 import MarkNav from 'markdown-navbar';
 import 'markdown-navbar/dist/navbar.css';
 import _ from 'lodash';
+import { LayoutContext } from '../layouts/index';
 
 const Index = () => {
+  const { size, selectInfo } = useContext<any>(LayoutContext);
   const viewRef = useRef<any>();
   const [treeData, setTreeData] = useState([]);
   const [articleData, setArticleData] = useState<any>({});
 
   const scrollChange = () => {
+    console.log('scroll');
     // 变量 scrollHeight 是滚动条的总高度
     let scrollHeight =
       document.documentElement.scrollHeight || document.body.scrollHeight;
@@ -40,12 +43,18 @@ const Index = () => {
   };
 
   useEffect(() => {
-    courseArticleSelectOneRun('2342b97c-a8e3-4f8e-a5f3-80ee2d5e42a9');
-    // 滚动条滚动时触发
-    window.addEventListener('scroll', scrollChange);
+    if (size && size.width > 768) {
+      window.addEventListener('scroll', scrollChange);
+    } else {
+      window.removeEventListener('scroll', scrollChange);
+    }
     return () => {
       window.removeEventListener('scroll', scrollChange);
     };
+  }, [size]);
+
+  useEffect(() => {
+    courseArticleSelectOneRun('2342b97c-a8e3-4f8e-a5f3-80ee2d5e42a9');
   }, []);
 
   const { run: courseTreeRun } = useRequest(() => api.courseTree({}), {
@@ -86,6 +95,12 @@ const Index = () => {
       courseArticleSelectOneRun(info.node.key);
     }
   };
+
+  useEffect(() => {
+    if (selectInfo) {
+      onSelect([], selectInfo);
+    }
+  }, [selectInfo]);
 
   return (
     <div>
