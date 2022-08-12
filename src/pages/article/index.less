@@ -1,27 +1,32 @@
-@import '../../style/page.less';
+@import "../../style/page.less";
 
 .main {
   width: 100%;
   padding: 30px 100px;
   display: flex;
   flex-direction: row;
+
   .left {
     width: 300px;
+
     .block {
       width: 100%;
       padding: 10px;
       border: 1px solid #dfdfdf;
-      box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0 16px rgb(0 0 0 / 20%);
       border-radius: 10px;
       margin-bottom: 20px;
+
       .title {
         font-size: 18px;
         padding-bottom: 5px;
         border-bottom: 1px solid #dfdfdf;
       }
+
       .bigBlock {
         padding-top: 15px;
         flex-direction: row;
+
         .smallBlock {
           cursor: pointer;
           font-size: 14px;
@@ -34,28 +39,34 @@
           margin: 0 3% 3% 0;
           opacity: 0.7;
         }
+
         .smallBlock:nth-child(3n) {
           margin: 0;
         }
+
         .smallBlock:hover {
           opacity: 1;
         }
       }
     }
   }
+
   .right {
     width: 80%;
     padding: 10px;
     margin-left: 20px;
     border-radius: 10px;
-    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 16px rgb(0 0 0 / 20%);
+
     .title {
       font-size: 18px;
       padding-bottom: 5px;
       border-bottom: 1px solid #dfdfdf;
     }
+
     .bigBlock {
       padding-top: 15px;
+
       .data {
         width: 100%;
         flex: 1;
@@ -63,14 +74,17 @@
         flex-direction: column;
         padding-bottom: 10px;
       }
+
       .dataPagination {
         text-align: center;
         font-size: 18px;
+
         :global {
           .ant-pagination-item-active {
             border: 0;
             border-bottom: 3px solid @primary-color;
           }
+
           .ant-pagination-item-active a {
             color: @primary-color;
           }
@@ -79,16 +93,18 @@
     }
   }
 }
-@media (min-width: 0px) and (max-width: 1200px) {
+
+@media (min-width: 0) and (max-width: 1200px) {
   .main {
-    padding: 10px 10px;
-    .left{
+    padding: 10px;
+
+    .left {
       display: none;
     }
-    .right{
+
+    .right {
       width: 100%;
       margin: 0;
     }
   }
 }
-

@@ -1,9 +1,10 @@
-@import '../../style/page.less';
+@import "../../style/page.less";
 
 .main {
   display: flex;
   width: 100%;
-  padding: 10px 10px 0 10px;
+  padding: 10px 10px 0;
+
   .left {
     width: 20vw;
     height: calc(100vh - 60px);
@@ -12,78 +13,68 @@
     border-right: 1px solid #f1f1f1;
     background-color: #fff;
     padding: 20px;
+
     :global {
       .ant-tree {
         font-size: 16px;
         overflow-x: hidden;
       }
+
       .ant-tree .ant-tree-treenode {
-        padding: 2px 2px 6px 2px;
+        padding: 2px 2px 6px;
       }
+
       .ant-tree-title {
         padding-left: 2px;
         display: inline-block;
         overflow: hidden;
       }
+
       .ant-tree-switcher.ant-tree-switcher_close,
       .ant-tree-switcher.ant-tree-switcher_open,
       .ant-tree-switcher.ant-tree-switcher-noop {
         display: none;
       }
+
       .ant-tree.ant-tree-directory .ant-tree-treenode-selected:hover::before,
       .ant-tree.ant-tree-directory .ant-tree-treenode-selected::before {
         background-color: @primary-color;
       }
+
       .ant-tree-node-content-wrapper.ant-tree-node-content-wrapper-normal {
         display: flex;
       }
     }
   }
+
   .right {
     width: calc(100vw - 320px);
     margin-left: calc(20vw + 40px);
     padding-right: 220px;
     display: flex;
     justify-content: center;
+
     .articleLeft {
       .articleContent {
         width: calc(50vw + 36px);
       }
     }
+
     .articleRight {
       padding-left: 20px;
       padding-top: 10px;
       position: relative;
+
       .articleMenu {
         position: fixed;
         width: 180px;
         line-break: anywhere;
       }
+
       :global {
         .markdown-navigation .title-anchor.active {
           color: @primary-color;
         }
-      }
-    }
-  }
-}
-
-@media (min-width: 0px) and (max-width: 768px) {
-  .main {
-    .left{
-      display: none;
-    }
-    .right {
-      width: 100%;
-      margin-left: 0;
-      padding-right: 0;
-      .articleLeft {
-        .articleContent {
-          width: calc(80vw + 36px);
-        }
-      }
-      .articleRight {
-        display: none;
       }
     }
   }
@@ -95,11 +86,13 @@
       width: 100%;
       margin-left: 20vw;
       padding-right: 0;
+
       .articleLeft {
         .articleContent {
           width: calc(65vw + 36px);
         }
       }
+
       .articleRight {
         display: none;
       }
@@ -107,3 +100,26 @@
   }
 }
 
+@media (min-width: 0) and (max-width: 768px) {
+  .main {
+    .left {
+      display: none;
+    }
+
+    .right {
+      width: 100%;
+      margin-left: 0;
+      padding-right: 0;
+
+      .articleLeft {
+        .articleContent {
+          width: calc(80vw + 36px);
+        }
+      }
+
+      .articleRight {
+        display: none;
+      }
+    }
+  }
+}

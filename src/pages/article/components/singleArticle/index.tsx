@@ -26,7 +26,7 @@ const Index = (props: any) => {
           </div>
         ) : null}
         {data.tagName
-          ? data.tagName.split(',').map((name: string,index:number) => {
+          ? data.tagName.split(',').map((name: string, index: number) => {
               return (
                 <div className={styles.tag} key={index}>
                   <TagOutlined className={styles.icon} />

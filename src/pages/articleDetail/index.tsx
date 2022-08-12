@@ -60,9 +60,7 @@ const Index = (props: any) => {
               <LeftOutlined className={styles.icon} />
               返回文章列表
             </div>
-            <div className={styles.middle}>
-              {articleData.title}
-            </div>
+            <div className={styles.middle}>{articleData.title}</div>
             <div className={styles.right}>
               {articleData.classifyName ? (
                 <div className={styles.classify}>
@@ -71,14 +69,16 @@ const Index = (props: any) => {
                 </div>
               ) : null}
               {articleData.tagName
-                ? articleData.tagName.split(',').map((name: string,index:number) => {
-                    return (
-                      <div className={styles.tag} key={index}>
-                        <TagOutlined className={styles.icon} />
-                        <div>{name}</div>
-                      </div>
-                    );
-                  })
+                ? articleData.tagName
+                    .split(',')
+                    .map((name: string, index: number) => {
+                      return (
+                        <div className={styles.tag} key={index}>
+                          <TagOutlined className={styles.icon} />
+                          <div>{name}</div>
+                        </div>
+                      );
+                    })
                 : null}
               <div className={styles.time}>
                 <ClockCircleOutlined className={styles.icon} />

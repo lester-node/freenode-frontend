@@ -68,7 +68,7 @@ export default (props: any) => {
   }, [size]);
 
   useMount(() => {
-    let pathname = window.location.pathname;
+    const pathname = window.location.pathname;
     if (pathname.includes('articleDetail') || pathname.includes('article')) {
       setActive('文章');
     }
@@ -83,7 +83,7 @@ export default (props: any) => {
       icon: <HomeOutlined />,
       onClick: (name: string) => {
         setActive(name);
-        //history.push不会刷新页面，只会刷新props.children部分，但window.location.href会刷新页面
+        // history.push不会刷新页面，只会刷新props.children部分，但window.location.href会刷新页面
         history.push('/');
       },
     },
@@ -123,14 +123,16 @@ export default (props: any) => {
     //     history.push('about');
     //   },
     // },
-    {
+  ];
+  if (size && size.width > 768) {
+    menu.push({
       name: '后台',
       icon: <RocketOutlined />,
       onClick: () => {
         window.open('http://www.freenode.cn:3000');
       },
-    },
-  ];
+    });
+  }
 
   return (
     <div className={styles.layout}>
@@ -176,7 +178,7 @@ export default (props: any) => {
                                 itemA.onClick && itemA.onClick(itemA.name);
                               }}
                               className={`${
-                                itemA.name == active ? styles.active : null
+                                itemA.name === active ? styles.active : null
                               }`}
                             >
                               {itemA.name}
@@ -190,10 +192,13 @@ export default (props: any) => {
                 return (
                   <div
                     className={`${styles.nav} ${
-                      item.name == active ? styles.active : null
+                      item.name === active ? styles.active : null
                     }`}
                     key={index}
                     onClick={() => {
+                      if (size.width < 768) {
+                        setMenuOpen(false);
+                      }
                       item.onClick && item.onClick(item.name);
                     }}
                   >
@@ -205,7 +210,7 @@ export default (props: any) => {
             })}
           </div>
 
-          {window.location.pathname.includes('course') ? (
+          {window.location.pathname.includes('course') && size?.width < 768 ? (
             <div className={styles.navBottom}>
               {treeData.length ? (
                 <Tree.DirectoryTree

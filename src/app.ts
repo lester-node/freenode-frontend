@@ -1,3 +1,3 @@
-export function render (render: any) {
-  render()
+export function render(render: any) {
+  render();
 }

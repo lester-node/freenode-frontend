@@ -9,7 +9,7 @@
 
 # production
 /dist
-
+/dist.rar
 # misc
 .DS_Store
 

@@ -83,7 +83,7 @@ const Index = () => {
                       });
                     }}
                   >
-                    {item.name == '全部'
+                    {item.name === '全部'
                       ? `${item.name}`
                       : `${item.name}(${item.articleTotal})`}
                   </div>
@@ -109,7 +109,7 @@ const Index = () => {
                       });
                     }}
                   >
-                    {item.name == '全部'
+                    {item.name === '全部'
                       ? `${item.name}`
                       : `${item.name}(${item.articleTotal})`}
                   </div>
@@ -122,7 +122,7 @@ const Index = () => {
           <div className={styles.title}>最新文章</div>
           <div className={styles.bigBlock}>
             <div className={styles.data}>
-              {pageData.dataList.map((item:any, index) => (
+              {pageData.dataList.map((item: any, index) => (
                 <SingleArticle data={item} key={index} />
               ))}
             </div>
