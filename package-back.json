@@ -8,13 +8,16 @@
     "test": "umi-test",
     "test:coverage": "umi-test --coverage",
     "lint:script": "eslint --fix --ext .js,.jsx,.ts,.tsx src",
-    "lint:style": "stylelint src/**/*.less --fix --custom-syntax postcss-less"
+    "lint:style": "stylelint src/**/*.less --fix --custom-syntax postcss-less //home文件夹下的less有问题"
   },
   "gitHooks": {
     "pre-commit": "lint-staged",
     "commit-msg": "commitlint -e"
   },
   "lint-staged": {
+    "*.less": [
+      "stylelint src/**/*.less --fix --custom-syntax postcss-less"
+    ],
     "src/**/*.{js,jsx,ts,tsx}": [
       "prettier -c --write .",
       "eslint --fix --ext .js,.jsx,.ts,.tsx src"

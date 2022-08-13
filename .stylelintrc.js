@@ -6,10 +6,10 @@ module.exports = {
       true,
       { ignorePseudoClasses: ['global', 'local'] },
     ],
-    'no-descending-specificity': null,
     'selector-class-pattern': [
       // 命名规范 -
-      '^([a-zA-Z][a-z0-9A-Z]*)(-[a-z0-9A-Z]+)*$',
+      // '^([a-zA-Z][a-z0-9A-Z]*)(-[a-z0-9A-Z_]+)*$',
+      '.',
       {
         message: 'Expected class selector to be kebab-case',
       },
