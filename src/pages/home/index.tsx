@@ -94,6 +94,30 @@ const Index = () => {
     }
   )
 
+  const { run: coursePageRun } = useRequest(
+    () =>
+      api.coursePage({
+        page: 1,
+        rows: 10
+      }),
+    {
+      manual: false,
+      onSuccess: (res: any) => {
+        if (res.result === 0) {
+          setTotal({
+            ...total,
+            course: res.data.total
+          })
+        } else {
+          message.error(res.message || '操作失败')
+        }
+      },
+      onError: (res: any) => {
+        message.error(res.message || '操作失败')
+      }
+    }
+  )
+
   const customIcons: Record<number, React.ReactNode> = {
     1: <FrownOutlined />,
     2: <FrownOutlined />,
@@ -261,16 +285,18 @@ const Index = () => {
         <div
           className={styles.middleDiv}
           onClick={() => {
-            history.push('course')
+            window.location.href = `${window.location.origin}/course`
+            // history.push('course');
           }}
         >
           <div>教程</div>
-          <div>{total.article}</div>
+          <div>{total.course}</div>
         </div>
         <div
           className={styles.middleDiv}
           onClick={() => {
-            history.push('article')
+            window.location.href = `${window.location.origin}/article`
+            // history.push('article');
           }}
         >
           <div>文章</div>
@@ -279,7 +305,8 @@ const Index = () => {
         <div
           className={styles.middleDiv}
           onClick={() => {
-            history.push('article')
+            window.location.href = `${window.location.origin}/article`
+            // history.push('article');
           }}
         >
           <div>分类</div>
@@ -288,7 +315,8 @@ const Index = () => {
         <div
           className={styles.middleDiv}
           onClick={() => {
-            history.push('article')
+            window.location.href = `${window.location.origin}/article`
+            // history.push('article');
           }}
         >
           <div>标签</div>
