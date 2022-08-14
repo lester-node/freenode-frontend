@@ -4,7 +4,7 @@
 
   .midder {
     padding-top: 50px;
-    min-height: 50vh;
+    min-height: 84vh;
   }
 
   .footer {
@@ -22,7 +22,7 @@
     width: 100%;
     height: 50px;
     padding: 5px 30px;
-    border-bottom: @default-border;
+    box-shadow: @shadow;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -36,7 +36,7 @@
 
     .title {
       cursor: pointer;
-      font-size: @big-text-size;
+      font-size: 20px;
       font-weight: 600;
       display: flex;
       align-items: center;
@@ -83,6 +83,38 @@
             margin-right: 0;
           }
 
+          &:hover {
+            .dropDown {
+              display: block;
+            }
+          }
+
+          .dropDown {
+            display: none;
+            box-shadow: @shadow;
+            background-color: #fff;
+            position: absolute;
+            top: 35px;
+            right: 0;
+            min-width: 80px;
+            border-radius: 4px;
+
+            div {
+              padding: 5px 10px;
+
+              &:first-child {
+                padding-top: 10px;
+              }
+
+              &:last-child {
+                padding-bottom: 10px;
+              }
+
+              &:hover {
+                color: @primary-color;
+              }
+            }
+          }
         }
       }
     }
@@ -94,14 +126,14 @@
     width: 100%;
     height: 50px;
     padding: 5px 20px;
-    border-bottom: @default-border;
+    box-shadow: @shadow;
     display: flex;
     align-items: center;
     justify-content: space-between;
     position: fixed;
     background-color: #fff;
-    font-size: @big-text-size;
-    z-index: 1000;
+    font-size: 20px;
+    z-index: 1;
 
     .phoneLeft {
       cursor: pointer;
@@ -127,17 +159,17 @@
     }
 
     .menu {
-      width: 260px;
+      width: 200px;
       height: calc(100vh - 50px);
       background-color: #fff;
-      border-right: @default-border;
+      box-shadow: 5px 0 10px -5px rgb(0 0 0 / 20%);
       position: absolute;
       top: 50px;
       left: 0;
       display: flex;
       flex-direction: column;
       padding: 10px 20px;
-      font-size: @default-text-size;
+      font-size: 14px;
       z-index: 1000;
 
       .active {
@@ -145,7 +177,7 @@
       }
 
       .navTop {
-        border-bottom: @default-border;
+        border-bottom: 1px solid #eaedf0;
 
         .nav {
           padding: 10px 0;
@@ -163,7 +195,7 @@
 
         :global {
           .ant-tree {
-            font-size: @default-text-size;
+            font-size: 16px;
             overflow-x: hidden;
           }
 

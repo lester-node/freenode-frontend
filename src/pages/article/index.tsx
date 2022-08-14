@@ -1,20 +1,20 @@
-import styles from './index.less';
-import React, { useEffect, useState } from 'react';
-import useRequest from '@ahooksjs/use-request';
-import api from './service';
-import { message, Pagination } from 'antd';
-import config from './config';
-import SingleArticle from './components/singleArticle';
+import styles from './index.less'
+import React, { useEffect, useState } from 'react'
+import useRequest from '@ahooksjs/use-request'
+import api from './service'
+import { message, Pagination } from 'antd'
+import config from './config'
+import SingleArticle from './components/singleArticle'
 
 const Index = () => {
-  const [pageData, setPageData] = useState(config.PAGEDATA);
-  const [tableParams, setTableParams] = useState(config.TABLEPARAMS);
-  const [classifyData, setClassifyData] = useState<any>([]);
-  const [tagData, setTagData] = useState<any>([]);
+  const [pageData, setPageData] = useState(config.PAGEDATA)
+  const [tableParams, setTableParams] = useState(config.TABLEPARAMS)
+  const [classifyData, setClassifyData] = useState<any>([])
+  const [tagData, setTagData] = useState<any>([])
 
   useEffect(() => {
-    articlePageRun(tableParams);
-  }, [tableParams.page, tableParams.tagId, tableParams.classifyId]);
+    articlePageRun(tableParams)
+  }, [tableParams.page, tableParams.tagId, tableParams.classifyId])
 
   const { run: articlePageRun } = useRequest((obj) => api.articlePage(obj), {
     manual: true,
@@ -22,44 +22,44 @@ const Index = () => {
       if (res.result === 0) {
         setPageData({
           dataList: res.data.rows,
-          total: res.data.total,
-        });
+          total: res.data.total
+        })
       } else {
-        message.error(res.message || '操作失败');
+        message.error(res.message || '操作失败')
       }
     },
     onError: (res: any) => {
-      message.error(res.message || '操作失败');
-    },
-  });
+      message.error(res.message || '操作失败')
+    }
+  })
 
   const { run: classifyEnumRun } = useRequest(() => api.classifyList({}), {
     manual: false,
     onSuccess: (res: any) => {
       if (res.result === 0) {
-        setClassifyData([{ id: '', name: '全部' }, ...res.data]);
+        setClassifyData([{ id: '', name: '全部' }, ...res.data])
       } else {
-        message.error(res.message || '操作失败');
+        message.error(res.message || '操作失败')
       }
     },
     onError: (res: any) => {
-      message.error(res.message || '操作失败');
-    },
-  });
+      message.error(res.message || '操作失败')
+    }
+  })
 
   const { run: tagPageRun } = useRequest(() => api.tagList({}), {
     manual: false,
     onSuccess: (res: any) => {
       if (res.result === 0) {
-        setTagData([{ id: '', name: '全部' }, ...res.data]);
+        setTagData([{ id: '', name: '全部' }, ...res.data])
       } else {
-        message.error(res.message || '操作失败');
+        message.error(res.message || '操作失败')
       }
     },
     onError: (res: any) => {
-      message.error(res.message || '操作失败');
-    },
-  });
+      message.error(res.message || '操作失败')
+    }
+  })
 
   return (
     <div>
@@ -72,22 +72,22 @@ const Index = () => {
                 return (
                   <div
                     key={index}
-                    style={{ backgroundColor: `#${config.COLOR_1[index]}` }}
+                    // style={{ backgroundColor: `#${config.COLOR_1[index]}` }}
                     className={styles.smallBlock}
                     onClick={() => {
                       setTableParams({
                         page: 1,
                         rows: 10,
                         classifyId: item.id,
-                        tagId: tableParams.tagId,
-                      });
+                        tagId: tableParams.tagId
+                      })
                     }}
                   >
                     {item.name === '全部'
                       ? `${item.name}`
                       : `${item.name}(${item.articleTotal})`}
                   </div>
-                );
+                )
               })}
             </div>
           </div>
@@ -98,22 +98,22 @@ const Index = () => {
                 return (
                   <div
                     key={index}
-                    style={{ backgroundColor: `#${config.COLOR_2[index]}` }}
+                    // style={{ backgroundColor: `#${config.COLOR_2[index]}` }}
                     className={styles.smallBlock}
                     onClick={() => {
                       setTableParams({
                         page: 1,
                         rows: 10,
                         tagId: item.id,
-                        classifyId: tableParams.classifyId,
-                      });
+                        classifyId: tableParams.classifyId
+                      })
                     }}
                   >
                     {item.name === '全部'
                       ? `${item.name}`
                       : `${item.name}(${item.articleTotal})`}
                   </div>
-                );
+                )
               })}
             </div>
           </div>
@@ -138,15 +138,15 @@ const Index = () => {
                 setTableParams({
                   ...tableParams,
                   page: page,
-                  rows: pageSize,
-                });
+                  rows: pageSize
+                })
               }}
             />
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index

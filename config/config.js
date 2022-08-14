@@ -2,6 +2,7 @@ import { defineConfig } from 'umi';
 import px2rem from 'postcss-plugin-px2rem';
 import routes from './routes';
 import proxy from './proxy';
+import theme from './theme';
 
 export default defineConfig({
   nodeModulesTransform: {
@@ -10,6 +11,7 @@ export default defineConfig({
   },
   routes,
   proxy,
+  theme,
   fastRefresh: {},
   targets: {
     ie: 11,

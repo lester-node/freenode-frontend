@@ -1,5 +1,3 @@
-@import '../../style/page.less';
-
 .main {
   width: 100%;
   padding: 30px 100px;
@@ -7,11 +5,11 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  font-size: 24px;
+  font-size: @big-text-size;
   text-align: center;
   //注意：会选中.font的第一个div子元素
   .font {
-    line-height: 2.5;
+    line-height: 3;
     & > div:first-child {
       font-size: 36px;
       font-weight: 800;
@@ -34,9 +32,9 @@
         background-color: #fff;
         position: absolute;
         left: 0;
-        width: 420px;
+        width: 400px;
         line-height: 1.5;
-        font-size: 20px;
+        font-size: @default-text-size;
         text-align: left;
         border-radius: 4px;
         z-index: 1;
@@ -63,17 +61,17 @@
       display: flex;
       flex-direction: row;
       padding: 0 12px;
-      width: 200px;
-      height: 120px;
+      width: 180px;
+      height: 100px;
       margin: 15px 15px 30px 15px;
       cursor: pointer;
       div:nth-child(1) {
         width: 50px;
-        font-size: 24px;
+        font-size: @big-text-size;
         padding-top: 5px;
       }
       div:nth-child(2) {
-        font-size: 75px;
+        font-size: 70px;
         width: 130px;
         display: flex;
         justify-content: center;
@@ -107,11 +105,11 @@
   }
   .icon {
     width: 270px;
-    font-size: 30px;
+    font-size: 24px;
     cursor: pointer;
     display: flex;
     justify-content: space-around;
-    line-height: 2;
+    line-height: 2.5;
     .showImg {
       position: relative;
       img {
@@ -128,10 +126,10 @@
       .email {
         display: none;
         position: absolute;
-        width: 280px;
+        width: 250px;
         top: 60px;
         left: 0;
-        font-size: 18px;
+        font-size: @default-text-size;
         color: #000;
         background-color: #fff;
         box-shadow: @shadow;
@@ -183,7 +181,7 @@
 @media (min-width: 0px) and (max-width: 768px) {
   .main {
     padding: 10px 20px;
-    font-size: 20px;
+    font-size: @default-text-size;
     .font {
       line-height: 2.5;
       & > div:first-child {
@@ -192,8 +190,8 @@
       }
       .personAbility {
         .showPersonAbility {
-          left: -275%;
-          width: 80vw;
+          left: -225%;
+          width: 70vw;
           li {
             .grade {
               display: none;

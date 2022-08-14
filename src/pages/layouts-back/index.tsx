@@ -1,3 +1,4 @@
+// 判断了菜单有children的情况下
 import { ConfigProvider, message, Tree } from 'antd'
 import styles from './index.less'
 import zhCN from 'antd/es/locale/zh_CN'
@@ -17,7 +18,6 @@ import { history } from 'umi'
 import { useMount, useSize, useThrottleFn } from 'ahooks'
 import api from './service'
 import { DirectoryTreeProps } from 'antd/lib/tree'
-import _ from 'lodash'
 
 export const LayoutContext = createContext({})
 
@@ -26,18 +26,66 @@ export default (props: any) => {
   const size: any = useSize(ref)
   const [active, setActive] = useState('首页')
   const [menuOpen, setMenuOpen] = useState(false)
-  const [treeData, setTreeData] = useState<any>([])
+  const [treeData, setTreeData] = useState([])
   const [selectInfo, setSelectInfo] = useState<any>()
-  const [menu, setMenu] = useState([
+
+  console.log('size', size)
+  const store = {
+    size,
+    selectInfo
+  }
+
+  const { run: courseTreeRun } = useRequest(() => api.courseTree({}), {
+    manual: false,
+    onSuccess: (res: any) => {
+      if (res.result === 0) {
+        setTreeData(res.data)
+      } else {
+        message.error(res.message || '操作失败')
+      }
+    },
+    onError: (res: any) => {
+      message.error(res.message || '操作失败')
+    }
+  })
+
+  const onSelect: DirectoryTreeProps['onSelect'] = (keys, info) => {
+    setSelectInfo(info)
+  }
+
+  const { run } = useThrottleFn(
+    (flag) => {
+      setMenuOpen(flag)
+    },
+    { wait: 10 }
+  )
+
+  useEffect(() => {
+    if (size?.width < 768) {
+      run(false)
+    } else if (size?.width > 768) {
+      run(true)
+    }
+  }, [size])
+
+  useMount(() => {
+    const pathname = window.location.pathname
+    if (pathname.includes('articleDetail') || pathname.includes('article')) {
+      setActive('文章')
+    }
+    if (pathname.includes('course')) {
+      setActive('教程')
+    }
+  })
+
+  const menu = [
     {
       name: '首页',
       icon: <HomeOutlined />,
       onClick: (name: string) => {
         setActive(name)
-        window.location.href = `${window.location.origin}/`
         // history.push不会刷新页面，只会刷新props.children部分，但window.location.href会刷新页面
-        // 但history.push中ios会失效
-        // history.push('/');
+        history.push('/')
       }
     },
     {
@@ -45,8 +93,7 @@ export default (props: any) => {
       icon: <ReadOutlined />,
       onClick: (name: string) => {
         setActive(name)
-        // history.push('course');
-        window.location.href = `${window.location.origin}/course`
+        history.push('course')
       }
     },
     {
@@ -54,8 +101,7 @@ export default (props: any) => {
       icon: <FileTextOutlined />,
       onClick: (name: string) => {
         setActive(name)
-        // history.push('article');
-        window.location.href = `${window.location.origin}/article`
+        history.push('article')
       }
     }
     // {
@@ -78,76 +124,16 @@ export default (props: any) => {
     //     history.push('about');
     //   },
     // },
-  ])
-
-  const store = {
-    size,
-    selectInfo
+  ]
+  if (size && size.width > 768) {
+    menu.push({
+      name: '后台',
+      icon: <RocketOutlined />,
+      onClick: () => {
+        window.open('http://www.freenode.cn:3000')
+      }
+    })
   }
-
-  const { run: courseTreeRun } = useRequest(() => api.courseTree({}), {
-    manual: false,
-    onSuccess: (res: any) => {
-      if (res.result === 0) {
-        setTreeData(res.data)
-      } else {
-        message.error(res.message || '操作失败')
-      }
-    },
-    onError: (res: any) => {
-      message.error(res.message || '操作失败')
-    }
-  })
-
-  const onSelect: DirectoryTreeProps['onSelect'] = (keys, info) => {
-    setSelectInfo(info)
-    if (info.node.isLeaf) {
-      setMenuOpen(false)
-    }
-  }
-
-  const { run } = useThrottleFn(
-    (flag) => {
-      setMenuOpen(flag)
-    },
-    { wait: 10 }
-  )
-
-  useEffect(() => {
-    if (size?.width < 768) {
-      run(false)
-      const arr = _.cloneDeep(menu)
-      const flag = arr.find((item) => item.name === '后台')
-      if (flag) {
-        arr.length = arr.length - 1
-        setMenu(arr)
-      }
-    } else if (size?.width > 768) {
-      run(true)
-      const arr = _.cloneDeep(menu)
-      const flag = arr.find((item) => item.name === '后台')
-      if (!flag) {
-        arr.splice(arr.length, 0, {
-          name: '后台',
-          icon: <RocketOutlined />,
-          onClick: () => {
-            window.open('http://www.freenode.cn:3000')
-          }
-        })
-        setMenu(arr)
-      }
-    }
-  }, [size])
-
-  useMount(() => {
-    const pathname = window.location.pathname
-    if (pathname.includes('articleDetail') || pathname.includes('article')) {
-      setActive('文章')
-    }
-    if (pathname.includes('course')) {
-      setActive('教程')
-    }
-  })
 
   return (
     <div className={styles.layout}>
@@ -178,23 +164,50 @@ export default (props: any) => {
         >
           <div className={styles.navTop}>
             {menu.map((item: any, index) => {
-              return (
-                <div
-                  className={`${styles.nav} ${
-                    item.name === active ? styles.active : null
-                  }`}
-                  key={index}
-                  onClick={() => {
-                    if (size.width < 768) {
-                      setMenuOpen(false)
-                    }
-                    item.onClick && item.onClick(item.name)
-                  }}
-                >
-                  <span>{item.name}</span>
-                  {item.icon}
-                </div>
-              )
+              if (item.children) {
+                return (
+                  <div className={styles.nav} key={index}>
+                    <span>{item.name}</span>
+                    {item.icon}
+                    <div className={styles.dropDown}>
+                      {item.children
+                        && item.children.map((itemA: any, indexA: number) => {
+                          return (
+                            <div
+                              key={indexA}
+                              onClick={() => {
+                                itemA.onClick && itemA.onClick(itemA.name)
+                              }}
+                              className={`${
+                                itemA.name === active ? styles.active : null
+                              }`}
+                            >
+                              {itemA.name}
+                            </div>
+                          )
+                        })}
+                    </div>
+                  </div>
+                )
+              } else {
+                return (
+                  <div
+                    className={`${styles.nav} ${
+                      item.name === active ? styles.active : null
+                    }`}
+                    key={index}
+                    onClick={() => {
+                      if (size.width < 768) {
+                        setMenuOpen(false)
+                      }
+                      item.onClick && item.onClick(item.name)
+                    }}
+                  >
+                    <span>{item.name}</span>
+                    {item.icon}
+                  </div>
+                )
+              }
             })}
           </div>
 
@@ -206,8 +219,8 @@ export default (props: any) => {
                     <Tree.DirectoryTree
                       treeData={treeData}
                       onSelect={onSelect}
-                      defaultExpandedKeys={[treeData?.[0]?.key]}
-                      defaultSelectedKeys={[treeData?.[0]?.children?.[0]?.key]}
+                      defaultExpandedKeys={['655507ea-664a-4700-a276-591d20ab1e22']}
+                      defaultSelectedKeys={['2342b97c-a8e3-4f8e-a5f3-80ee2d5e42a9']}
                     />
                   )
                   : null}
@@ -238,7 +251,7 @@ export default (props: any) => {
           }
         }}
       >
-        <div>Copyright © 2022 freenode.cn</div>
+        <div>Copyright © 2022 拾柒的博客</div>
         <a
           className={styles.jumpMiit}
           onClick={() => {

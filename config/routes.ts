@@ -4,7 +4,7 @@ export default [
     component: '@/pages/layouts',
     routes: [
       {
-        title: '高效率开发学习',
+        title: '拾柒的博客',
         path: '/',
         component: '@/pages/home',
       },

@@ -1,5 +1,3 @@
-@import "../../style/page.less";
-
 .main {
   display: flex;
   width: 100%;
@@ -16,7 +14,7 @@
 
     :global {
       .ant-tree {
-        font-size: 16px;
+        font-size: @default-text-size;
         overflow-x: hidden;
       }
 
@@ -102,6 +100,7 @@
 
 @media (min-width: 0) and (max-width: 768px) {
   .main {
+    padding: 0;
     .left {
       display: none;
     }

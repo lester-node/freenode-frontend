@@ -1,26 +1,23 @@
-@import "../../style/page.less";
-
 .main {
   width: 100%;
   padding: 30px 100px;
   display: flex;
   flex-direction: row;
-
+  justify-content: center;
   .left {
     width: 300px;
 
     .block {
       width: 100%;
       padding: 10px;
-      border: 1px solid #dfdfdf;
-      box-shadow: 0 0 16px rgb(0 0 0 / 20%);
+      border: @default-border;
       border-radius: 10px;
       margin-bottom: 20px;
 
       .title {
-        font-size: 18px;
+        font-size: @big-text-size;
         padding-bottom: 5px;
-        border-bottom: 1px solid #dfdfdf;
+        border-bottom: @default-border;
       }
 
       .bigBlock {
@@ -29,15 +26,17 @@
 
         .smallBlock {
           cursor: pointer;
-          font-size: 14px;
+          font-size: @default-text-size;
           display: inline-flex;
           justify-content: center;
           align-items: center;
           width: 31.3%;
           height: 30px;
-          color: #fff;
+          color: #000;
+          border: @default-border;
+          border-radius: 5px;
           margin: 0 3% 3% 0;
-          opacity: 0.7;
+          opacity: 0.9;
         }
 
         .smallBlock:nth-child(3n) {
@@ -45,27 +44,26 @@
         }
 
         .smallBlock:hover {
-          opacity: 1;
+          color: #fff;
+          background-color: @primary-color !important;
         }
       }
     }
   }
 
   .right {
-    width: 80%;
+    width: 60%;
     padding: 10px;
     margin-left: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 16px rgb(0 0 0 / 20%);
-
+    border: @default-border;
     .title {
-      font-size: 18px;
+      font-size: @big-text-size;
       padding-bottom: 5px;
-      border-bottom: 1px solid #dfdfdf;
+      border-bottom: @default-border;
     }
 
     .bigBlock {
-      padding-top: 15px;
 
       .data {
         width: 100%;
@@ -77,7 +75,7 @@
 
       .dataPagination {
         text-align: center;
-        font-size: 18px;
+        font-size: @default-text-size;
 
         :global {
           .ant-pagination-item-active {
@@ -94,7 +92,7 @@
   }
 }
 
-@media (min-width: 0) and (max-width: 1200px) {
+@media (min-width: 768px) and (max-width: 1200px) {
   .main {
     padding: 10px;
 
@@ -108,3 +106,27 @@
     }
   }
 }
+
+@media (min-width: 0) and (max-width: 768px) {
+  .main {
+    padding: 0 10px 10px 10px;
+
+    .left {
+      display: none;
+
+    }
+
+    .right {
+      width: 100%;
+      margin: 0;
+      border: 0;
+      .title {
+        text-align: center;
+      }
+      .bigBlock{
+        padding-top: 0;
+      }
+    }
+  }
+}
+

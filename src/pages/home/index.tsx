@@ -1,5 +1,5 @@
-import styles from './index.less';
-import React, { useState } from 'react';
+import styles from './index.less'
+import React, { useState } from 'react'
 import {
   GithubFilled,
   WechatFilled,
@@ -7,26 +7,26 @@ import {
   FrownOutlined,
   MehOutlined,
   SmileOutlined,
-  MailFilled,
-} from '@ant-design/icons';
-import useRequest from '@ahooksjs/use-request';
-import api from './service';
-import { message, Rate } from 'antd';
-import { history } from 'umi';
+  MailFilled
+} from '@ant-design/icons'
+import useRequest from '@ahooksjs/use-request'
+import api from './service'
+import { message, Rate } from 'antd'
+import { history } from 'umi'
 
 const Index = () => {
   const [total, setTotal] = useState({
     course: 0,
     article: 0,
     classify: 0,
-    tag: 0,
-  });
+    tag: 0
+  })
 
   const { run: articlePageRun } = useRequest(
     () =>
       api.articlePage({
         page: 1,
-        rows: 10,
+        rows: 10
       }),
     {
       manual: false,
@@ -34,23 +34,23 @@ const Index = () => {
         if (res.result === 0) {
           setTotal({
             ...total,
-            article: res.data.total,
-          });
+            article: res.data.total
+          })
         } else {
-          message.error(res.message || '操作失败');
+          message.error(res.message || '操作失败')
         }
       },
       onError: (res: any) => {
-        message.error(res.message || '操作失败');
-      },
-    },
-  );
+        message.error(res.message || '操作失败')
+      }
+    }
+  )
 
   const { run: classifyPageRun } = useRequest(
     () =>
       api.classifyPage({
         page: 1,
-        rows: 10,
+        rows: 10
       }),
     {
       manual: false,
@@ -58,23 +58,23 @@ const Index = () => {
         if (res.result === 0) {
           setTotal({
             ...total,
-            classify: res.data.total,
-          });
+            classify: res.data.total
+          })
         } else {
-          message.error(res.message || '操作失败');
+          message.error(res.message || '操作失败')
         }
       },
       onError: (res: any) => {
-        message.error(res.message || '操作失败');
-      },
-    },
-  );
+        message.error(res.message || '操作失败')
+      }
+    }
+  )
 
   const { run: tagPageRun } = useRequest(
     () =>
       api.tagPage({
         page: 1,
-        rows: 10,
+        rows: 10
       }),
     {
       manual: false,
@@ -82,30 +82,30 @@ const Index = () => {
         if (res.result === 0) {
           setTotal({
             ...total,
-            tag: res.data.total,
-          });
+            tag: res.data.total
+          })
         } else {
-          message.error(res.message || '操作失败');
+          message.error(res.message || '操作失败')
         }
       },
       onError: (res: any) => {
-        message.error(res.message || '操作失败');
-      },
-    },
-  );
+        message.error(res.message || '操作失败')
+      }
+    }
+  )
 
   const customIcons: Record<number, React.ReactNode> = {
     1: <FrownOutlined />,
     2: <FrownOutlined />,
     3: <MehOutlined />,
     4: <SmileOutlined />,
-    5: <SmileOutlined />,
-  };
+    5: <SmileOutlined />
+  }
 
   return (
     <div className={styles.main}>
       <div className={styles.font}>
-        <div>Hello！欢迎观看我的小破站！</div>
+        <div>Hello！欢迎观看拾柒的博客！</div>
         <div>
           此网站是我对于前端开发的总结和理解。如有错误的地方，请一定要指出，相互交流开发心得。
         </div>
@@ -235,7 +235,7 @@ const Index = () => {
         <div>
           <GithubFilled
             onClick={() => {
-              window.open('https://github.com/blog-code');
+              window.open('https://github.com/blog-code')
             }}
           />
         </div>
@@ -261,7 +261,7 @@ const Index = () => {
         <div
           className={styles.middleDiv}
           onClick={() => {
-            history.push('course');
+            history.push('course')
           }}
         >
           <div>教程</div>
@@ -270,7 +270,7 @@ const Index = () => {
         <div
           className={styles.middleDiv}
           onClick={() => {
-            history.push('article');
+            history.push('article')
           }}
         >
           <div>文章</div>
@@ -279,7 +279,7 @@ const Index = () => {
         <div
           className={styles.middleDiv}
           onClick={() => {
-            history.push('article');
+            history.push('article')
           }}
         >
           <div>分类</div>
@@ -288,7 +288,7 @@ const Index = () => {
         <div
           className={styles.middleDiv}
           onClick={() => {
-            history.push('article');
+            history.push('article')
           }}
         >
           <div>标签</div>
@@ -296,7 +296,7 @@ const Index = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index

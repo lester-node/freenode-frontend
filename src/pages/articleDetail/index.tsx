@@ -1,33 +1,33 @@
-import styles from './index.less';
-import React, { useState } from 'react';
-import { useMount } from 'ahooks';
-import useRequest from '@ahooksjs/use-request';
-import api from './service';
-import { message } from 'antd';
-import { Viewer } from '@toast-ui/react-editor';
-import '@toast-ui/editor/dist/i18n/zh-cn';
-import '../../style/toastui-editor-viewer.css';
-import _ from 'lodash';
+import styles from './index.less'
+import React, { useState } from 'react'
+import { useMount } from 'ahooks'
+import useRequest from '@ahooksjs/use-request'
+import api from './service'
+import { message } from 'antd'
+import { Viewer } from '@toast-ui/react-editor'
+import '@toast-ui/editor/dist/i18n/zh-cn'
+import '../../style/toastui-editor-viewer.css'
+import _ from 'lodash'
 import {
   LeftOutlined,
   ClockCircleOutlined,
   PushpinOutlined,
-  TagOutlined,
-} from '@ant-design/icons';
-import moment from 'moment';
-import { history } from 'umi';
-import MarkNav from 'markdown-navbar';
-import 'markdown-navbar/dist/navbar.css';
+  TagOutlined
+} from '@ant-design/icons'
+import moment from 'moment'
+import { history } from 'umi'
+import MarkNav from 'markdown-navbar'
+import 'markdown-navbar/dist/navbar.css'
 
 const Index = (props: any) => {
-  const state = props.location.state;
-  const [articleData, setArticleData] = useState<any>({});
+  const state = props.location.state
+  const [articleData, setArticleData] = useState<any>({})
 
   useMount(() => {
     if (state?.id) {
-      articleSelectOneRun({ id: state?.id });
+      articleSelectOneRun({ id: state?.id })
     }
-  });
+  })
 
   const { run: articleSelectOneRun } = useRequest(
     (obj) => api.articleSelectOne(obj),
@@ -35,16 +35,16 @@ const Index = (props: any) => {
       manual: true,
       onSuccess: (res: any) => {
         if (res.result === 0) {
-          setArticleData(res.data);
+          setArticleData(res.data)
         } else {
-          message.error(res.message || '操作失败');
+          message.error(res.message || '操作失败')
         }
       },
       onError: (res: any) => {
-        message.error(res.message || '操作失败');
-      },
-    },
-  );
+        message.error(res.message || '操作失败')
+      }
+    }
+  )
 
   return (
     <div className={styles.main}>
@@ -54,7 +54,8 @@ const Index = (props: any) => {
             <div
               className={styles.back}
               onClick={() => {
-                history.push('article');
+                window.location.href = `${window.location.origin}/article`
+                // history.push('article');
               }}
             >
               <LeftOutlined className={styles.icon} />
@@ -62,23 +63,25 @@ const Index = (props: any) => {
             </div>
             <div className={styles.middle}>{articleData.title}</div>
             <div className={styles.right}>
-              {articleData.classifyName ? (
-                <div className={styles.classify}>
-                  <PushpinOutlined className={styles.icon} />
-                  {articleData.classifyName}
-                </div>
-              ) : null}
+              {articleData.classifyName
+                ? (
+                  <div className={styles.classify}>
+                    <PushpinOutlined className={styles.icon} />
+                    {articleData.classifyName}
+                  </div>
+                )
+                : null}
               {articleData.tagName
                 ? articleData.tagName
-                    .split(',')
-                    .map((name: string, index: number) => {
-                      return (
-                        <div className={styles.tag} key={index}>
-                          <TagOutlined className={styles.icon} />
-                          <div>{name}</div>
-                        </div>
-                      );
-                    })
+                  .split(',')
+                  .map((name: string, index: number) => {
+                    return (
+                      <div className={styles.tag} key={index}>
+                        <TagOutlined className={styles.icon} />
+                        <div>{name}</div>
+                      </div>
+                    )
+                  })
                 : null}
               <div className={styles.time}>
                 <ClockCircleOutlined className={styles.icon} />
@@ -86,11 +89,13 @@ const Index = (props: any) => {
               </div>
             </div>
           </div>
-          {!_.isEmpty(articleData) ? (
-            <div className={styles.articleContent}>
-              <Viewer initialValue={articleData.content} />
-            </div>
-          ) : null}
+          {!_.isEmpty(articleData)
+            ? (
+              <div className={styles.articleContent}>
+                <Viewer initialValue={articleData.content} />
+              </div>
+            )
+            : null}
         </div>
         <div className={styles.right}>
           <MarkNav
@@ -101,7 +106,7 @@ const Index = (props: any) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index
