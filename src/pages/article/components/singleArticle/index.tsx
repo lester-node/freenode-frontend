@@ -12,7 +12,7 @@ const Index = (props: any) => {
   const { data } = props;
 
   const goArticleDetail = () => {
-    history.push({ pathname: '/articleDetail', state: { id: data.id } });
+    history.push(`/articleDetail?id=${data.id}`);
   };
 
   return (

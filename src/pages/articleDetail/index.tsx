@@ -15,17 +15,16 @@ import {
   TagOutlined
 } from '@ant-design/icons'
 import moment from 'moment'
-import { history } from 'umi'
 import MarkNav from 'markdown-navbar'
 import 'markdown-navbar/dist/navbar.css'
 
 const Index = (props: any) => {
-  const state = props.location.state
+  const query = props.location.query;
   const [articleData, setArticleData] = useState<any>({})
 
   useMount(() => {
-    if (state?.id) {
-      articleSelectOneRun({ id: state?.id })
+    if (query?.id) {
+      articleSelectOneRun({ id: query?.id });
     }
   })
 
@@ -102,6 +101,7 @@ const Index = (props: any) => {
             className={styles.articleMenu}
             source={articleData.content}
             headingTopOffset={80}
+            ordered={false}
           />
         </div>
       </div>
