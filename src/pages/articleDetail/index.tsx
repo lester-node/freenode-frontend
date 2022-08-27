@@ -19,12 +19,12 @@ import MarkNav from 'markdown-navbar'
 import 'markdown-navbar/dist/navbar.css'
 
 const Index = (props: any) => {
-  const query = props.location.query;
+  const query = props.location.query
   const [articleData, setArticleData] = useState<any>({})
 
   useMount(() => {
     if (query?.id) {
-      articleSelectOneRun({ id: query?.id });
+      articleSelectOneRun({ id: query?.id })
     }
   })
 
@@ -54,7 +54,6 @@ const Index = (props: any) => {
               className={styles.back}
               onClick={() => {
                 window.location.href = `${window.location.origin}/article`
-                // history.push('article');
               }}
             >
               <LeftOutlined className={styles.icon} />

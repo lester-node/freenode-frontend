@@ -1,13 +1,12 @@
 .main {
   display: flex;
   width: 100%;
-  padding: 10px 10px 0;
   .left {
-    width: 20vw;
+    width: 25vw;
     height: calc(100vh - 60px);
     overflow-y: auto;
     position: fixed;
-    border-right: 1px solid #f1f1f1;
+    border-right: @split-line;
     background-color: #fff;
     padding: 20px;
     :global {
@@ -38,30 +37,13 @@
     }
   }
   .right {
-    width: calc(100vw - 320px);
-    margin-left: calc(20vw + 40px);
-    padding-right: 220px;
+    padding-top: 15px;
+    width: 100vw;
+    margin-left: calc(25vw + 40px);
     display: flex;
     justify-content: center;
-    .articleLeft {
-      .articleContent {
-        width: calc(50vw + 36px);
-      }
-    }
-    .articleRight {
-      padding-left: 20px;
-      padding-top: 10px;
-      position: relative;
-      .articleMenu {
-        position: fixed;
-        width: 180px;
-        line-break: anywhere;
-      }
-      :global {
-        .markdown-navigation .title-anchor.active {
-          color: @primary-color;
-        }
-      }
+    .articleContent {
+      width: calc(65vw + 36px);
     }
   }
 }
@@ -70,15 +52,9 @@
   .main {
     .right {
       width: 100%;
-      margin-left: 20vw;
-      padding-right: 0;
-      .articleLeft {
-        .articleContent {
-          width: calc(65vw + 36px);
-        }
-      }
-      .articleRight {
-        display: none;
+      margin-left: 25vw;
+      .articleContent {
+        width: calc(65vw + 36px);
       }
     }
   }
@@ -93,14 +69,8 @@
     .right {
       width: 100%;
       margin-left: 0;
-      padding-right: 0;
-      .articleLeft {
-        .articleContent {
-          width: calc(80vw + 36px);
-        }
-      }
-      .articleRight {
-        display: none;
+      .articleContent {
+        width: calc(80vw + 36px);
       }
     }
   }

@@ -1,326 +1,81 @@
 import styles from './index.less'
-import React, { useState } from 'react'
-import {
-  GithubFilled,
-  WechatFilled,
-  QqCircleFilled,
-  FrownOutlined,
-  MehOutlined,
-  SmileOutlined,
-  MailFilled
-} from '@ant-design/icons'
-import useRequest from '@ahooksjs/use-request'
-import api from './service'
-import { message, Rate } from 'antd'
-import { history } from 'umi'
+import React, { useContext, useEffect } from 'react'
+import { LayoutContext } from '../layouts/index'
 
 const Index = () => {
-  const [total, setTotal] = useState({
-    course: 0,
-    article: 0,
-    classify: 0,
-    tag: 0
-  })
+  const { size } = useContext<any>(LayoutContext)
 
-  const { run: articlePageRun } = useRequest(
-    () =>
-      api.articlePage({
-        page: 1,
-        rows: 10
-      }),
-    {
-      manual: false,
-      onSuccess: (res: any) => {
-        if (res.result === 0) {
-          setTotal({
-            ...total,
-            article: res.data.total
-          })
-        } else {
-          message.error(res.message || '操作失败')
-        }
-      },
-      onError: (res: any) => {
-        message.error(res.message || '操作失败')
-      }
+  useEffect(() => {
+    if (size && size.width < 1000) {
+      const topDiv: any = document.getElementById('top')
+      const bottomDiv: any = document.getElementById('bottom')
+      topDiv.style.width = `${size.width - 40}px`
+      bottomDiv.style.width = `${size.width - 40}px`
     }
-  )
-
-  const { run: classifyPageRun } = useRequest(
-    () =>
-      api.classifyPage({
-        page: 1,
-        rows: 10
-      }),
-    {
-      manual: false,
-      onSuccess: (res: any) => {
-        if (res.result === 0) {
-          setTotal({
-            ...total,
-            classify: res.data.total
-          })
-        } else {
-          message.error(res.message || '操作失败')
-        }
-      },
-      onError: (res: any) => {
-        message.error(res.message || '操作失败')
-      }
-    }
-  )
-
-  const { run: tagPageRun } = useRequest(
-    () =>
-      api.tagPage({
-        page: 1,
-        rows: 10
-      }),
-    {
-      manual: false,
-      onSuccess: (res: any) => {
-        if (res.result === 0) {
-          setTotal({
-            ...total,
-            tag: res.data.total
-          })
-        } else {
-          message.error(res.message || '操作失败')
-        }
-      },
-      onError: (res: any) => {
-        message.error(res.message || '操作失败')
-      }
-    }
-  )
-
-  const { run: coursePageRun } = useRequest(
-    () =>
-      api.coursePage({
-        page: 1,
-        rows: 10
-      }),
-    {
-      manual: false,
-      onSuccess: (res: any) => {
-        if (res.result === 0) {
-          setTotal({
-            ...total,
-            course: res.data.total
-          })
-        } else {
-          message.error(res.message || '操作失败')
-        }
-      },
-      onError: (res: any) => {
-        message.error(res.message || '操作失败')
-      }
-    }
-  )
-
-  const customIcons: Record<number, React.ReactNode> = {
-    1: <FrownOutlined />,
-    2: <FrownOutlined />,
-    3: <MehOutlined />,
-    4: <SmileOutlined />,
-    5: <SmileOutlined />
-  }
+  }, [size])
 
   return (
     <div className={styles.main}>
-      <div className={styles.font}>
-        <div>Hello！欢迎观看拾柒的博客！</div>
+      <div className={styles.top} id="top">
         <div>
-          此网站是我对于前端开发的总结和理解。如有错误的地方，请一定要指出，相互交流开发心得。
+          <img src="./favicon.ico" />
+          拾柒的博客
         </div>
-        <div>
-          目前两年前端工作经验（
-          <div className={styles.personAbility}>
-            个人技能
-            <div className={styles.showPersonAbility}>
-              <ol>
-                <li>
-                  <Rate
-                    defaultValue={4}
-                    character={({ index }: { index: number }) =>
-                      customIcons[index + 1]
-                    }
-                    disabled
-                    className={styles.grade}
-                  />
-                  HTML、CSS、JavaScript
-                </li>
-                <li>
-                  <Rate
-                    defaultValue={4}
-                    character={({ index }: { index: number }) =>
-                      customIcons[index + 1]
-                    }
-                    disabled
-                    className={styles.grade}
-                  />
-                  React、Vue
-                </li>
-                <li>
-                  <Rate
-                    defaultValue={4}
-                    character={({ index }: { index: number }) =>
-                      customIcons[index + 1]
-                    }
-                    disabled
-                    className={styles.grade}
-                  />
-                  大屏可视化看板、WebGL
-                </li>
-                <li>
-                  <Rate
-                    defaultValue={4}
-                    character={({ index }: { index: number }) =>
-                      customIcons[index + 1]
-                    }
-                    disabled
-                    className={styles.grade}
-                  />
-                  Webpack、Gulp
-                </li>
-                <li>
-                  <Rate
-                    defaultValue={4}
-                    character={({ index }: { index: number }) =>
-                      customIcons[index + 1]
-                    }
-                    disabled
-                    className={styles.grade}
-                  />
-                  uniapp、H5、小程序
-                </li>
-                <li>
-                  <Rate
-                    defaultValue={4}
-                    character={({ index }: { index: number }) =>
-                      customIcons[index + 1]
-                    }
-                    disabled
-                    className={styles.grade}
-                  />
-                  Git
-                </li>
-                <li>
-                  <Rate
-                    defaultValue={3}
-                    character={({ index }: { index: number }) =>
-                      customIcons[index + 1]
-                    }
-                    disabled
-                    className={styles.grade}
-                  />
-                  Node、Koa2
-                </li>
-                <li>
-                  <Rate
-                    defaultValue={3}
-                    character={({ index }: { index: number }) =>
-                      customIcons[index + 1]
-                    }
-                    disabled
-                    className={styles.grade}
-                  />
-                  Nginx、Docker、Jenkins
-                </li>
-                <li>
-                  <Rate
-                    defaultValue={3}
-                    character={({ index }: { index: number }) =>
-                      customIcons[index + 1]
-                    }
-                    disabled
-                    className={styles.grade}
-                  />
-                  Linux
-                </li>
-                <li>
-                  <Rate
-                    defaultValue={3}
-                    character={({ index }: { index: number }) =>
-                      customIcons[index + 1]
-                    }
-                    disabled
-                    className={styles.grade}
-                  />
-                  MySQL
-                </li>
-              </ol>
-            </div>
-          </div>
-          ），如有好的兼职或开源项目的机会，也欢迎联系。
-        </div>
+        <div>随心而至、随性而往</div>
+        <div>暴富!</div>
       </div>
-      <div className={styles.icon}>
-        <div>
-          <GithubFilled
+      <div className={styles.bottom} id="bottom">
+        <div className={styles.block}>
+          <div
+            className={styles.blockTop}
             onClick={() => {
-              window.open('https://github.com/blog-code')
+              window.location.href = `${window.location.origin}/course`
             }}
-          />
+          >
+            知识总结（教程）
+          </div>
+          <div className={styles.blockBottom}>
+            对html、css、js、react等等知识点进行梳理整理
+          </div>
         </div>
-        <div className={styles.showImg}>
-          <WechatFilled />
-          {/* 使用相对地址必须使用require，不使用会去找public文件夹里面  */}
-          <img
-            src={require('./imgs/weixin.jpg')}
-            alt=""
-            className={styles.imgTwo}
-          />
+        <div className={styles.block}>
+          <div
+            className={styles.blockTop}
+            onClick={() => {
+              window.location.href = `${window.location.origin}/article`
+            }}
+          >
+            案例解析（文章）
+          </div>
+          <div className={styles.blockBottom}>
+            在工作中遇到的各种花里胡哨的问题进行记录
+          </div>
         </div>
-        <div className={styles.showImg}>
-          <QqCircleFilled />
-          <img src={require('./imgs/qq.jpg')} alt="" />
+        <div className={styles.block}>
+          <div
+            className={styles.blockTop}
+            onClick={() => {
+              window.location.href = `${window.location.origin}/about`
+            }}
+          >
+            个人描述（关于）
+          </div>
+          <div className={styles.blockBottom}>
+            记载此网站前后端所使用的技术和个人总结
+          </div>
         </div>
-        <div className={styles.showEmail}>
-          <MailFilled />
-          <div className={styles.email}>邮箱：13974412325@163.com</div>
-        </div>
-      </div>
-      <div className={styles.middle}>
-        <div
-          className={styles.middleDiv}
-          onClick={() => {
-            window.location.href = `${window.location.origin}/course`
-            // history.push('course');
-          }}
-        >
-          <div>教程</div>
-          <div>{total.course}</div>
-        </div>
-        <div
-          className={styles.middleDiv}
-          onClick={() => {
-            window.location.href = `${window.location.origin}/article`
-            // history.push('article');
-          }}
-        >
-          <div>文章</div>
-          <div>{total.article}</div>
-        </div>
-        <div
-          className={styles.middleDiv}
-          onClick={() => {
-            window.location.href = `${window.location.origin}/article`
-            // history.push('article');
-          }}
-        >
-          <div>分类</div>
-          <div>{total.classify}</div>
-        </div>
-        <div
-          className={styles.middleDiv}
-          onClick={() => {
-            window.location.href = `${window.location.origin}/article`
-            // history.push('article');
-          }}
-        >
-          <div>标签</div>
-          <div>{total.tag}</div>
+        <div className={styles.block}>
+          <div
+            className={styles.blockTop}
+            onClick={() => {
+              window.open('https://www.freenode.cn:3000')
+            }}
+          >
+            管理系统（后台）
+          </div>
+          <div className={styles.blockBottom}>
+            对教程、文章、分类和标签的博客管理系统
+          </div>
         </div>
       </div>
     </div>

@@ -1,216 +1,84 @@
 .main {
   width: 100%;
-  padding: 30px 100px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  font-size: @big-text-size;
-  text-align: center;
-  //注意：会选中.font的第一个div子元素
-  .font {
-    line-height: 3;
-    & > div:first-child {
-      font-size: 36px;
-      font-weight: 800;
-    }
-    .personAbility {
-      display: inline-block;
-      color: @primary-color;
-      position: relative;
-      cursor: pointer;
-      &:hover {
-        .showPersonAbility {
-          display: block;
-        }
-      }
-      .showPersonAbility {
-        display: none;
-        padding-top: 15px;
-        color: #000;
-        box-shadow: @shadow;
-        background-color: #fff;
-        position: absolute;
-        left: 0;
-        width: 400px;
-        line-height: 1.5;
-        font-size: @default-text-size;
-        text-align: left;
-        border-radius: 4px;
-        z-index: 1;
-        li {
-          .grade {
-            padding-right: 10px;
-            :global {
-              .ant-rate-star-first .anticon,
-              .ant-rate-star-second .anticon {
-                padding-bottom: 4px;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  .middle {
+  padding-top: 50px;
+  .top {
+    width: 960px;
+    height: 250px;
+    border-bottom: @split-line;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    .middleDiv {
-      display: flex;
-      flex-direction: row;
-      padding: 0 12px;
-      width: 180px;
-      height: 100px;
-      margin: 15px 15px 30px 15px;
-      cursor: pointer;
-      div:nth-child(1) {
-        width: 50px;
-        font-size: @big-text-size;
-        padding-top: 5px;
-      }
-      div:nth-child(2) {
-        font-size: 70px;
-        width: 130px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-    }
-    .middleDiv:nth-child(1) {
-      box-shadow: 0px 0px 16px rgb(130, 224, 170);
-      div:nth-child(2) {
-        color: rgb(130, 224, 170);
-      }
-    }
-    .middleDiv:nth-child(2) {
-      box-shadow: 0px 0px 16px rgb(248, 196, 113);
-      div:nth-child(2) {
-        color: rgb(248, 196, 113);
-      }
-    }
-    .middleDiv:nth-child(3) {
-      box-shadow: 0px 0px 16px rgb(133, 193, 233);
-      div:nth-child(2) {
-        color: rgb(133, 193, 233);
-      }
-    }
-    .middleDiv:nth-child(4) {
-      box-shadow: 0px 0px 16px rgb(215, 189, 226);
-      div:nth-child(2) {
-        color: rgb(215, 189, 226);
-      }
-    }
-  }
-  .icon {
-    width: 270px;
-    font-size: 24px;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-around;
-    line-height: 2.5;
-    .showImg {
-      position: relative;
-      img {
-        display: none;
-        position: absolute;
-        width: 200px;
-        top: 60px;
-        left: 0;
-        box-shadow: @shadow;
-      }
-    }
-    .showEmail {
-      position: relative;
-      .email {
-        display: none;
-        position: absolute;
-        width: 250px;
-        top: 60px;
-        left: 0;
-        font-size: @default-text-size;
-        color: #000;
-        background-color: #fff;
-        box-shadow: @shadow;
-      }
-    }
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-bottom: @split-line;
     div {
-      &:hover {
-        color: @primary-color;
+      width: 100%;
+      font-size: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: @primary-second-color;
+      img {
+        width: 36px;
       }
-      &:nth-child(2):hover,
-      &:nth-child(3):hover {
-        img {
-          display: block;
-        }
-      }
-      &:nth-child(4):hover {
-        .email {
-          display: block;
-        }
+    }
+    & > div:nth-child(1) {
+      font-size: 48px;
+      font-weight: 800;
+      color: #000;
+      img {
+        width: 60px;
       }
     }
   }
-  //注意：.font:first-child会选中.font元素
-  // .font{
-  //   &:first-child{
-  //     font-weight: 800;
-  //   }
-  // }
-  //注意：.font :first-child会选中.font子元素第一个元素
-  // .font{
-  //   :first-child{
-  //     font-weight: 800;
-  //   }
-  // }
-  &::after {
-    content: '';
-    height: 1px;
-    width: calc(100vw - 200px);
-    background-color: #e8eaed;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1200px) {
-  .main {
-    padding: 20px 30px;
+  .bottom {
+    width: 960px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border-bottom: @split-line;
+    .block {
+      width: 300px;
+      height: 125px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      .blockTop {
+        font-size: @big-text-size;
+        &:hover {
+          cursor: pointer;
+          color: @primary-color;
+        }
+      }
+      .blockBottom {
+        font-size: @default-text-size;
+        color: @primary-second-color;
+      }
+    }
   }
 }
 
 @media (min-width: 0px) and (max-width: 768px) {
   .main {
-    padding: 10px 20px;
-    font-size: @default-text-size;
-    .font {
-      line-height: 2.5;
-      & > div:first-child {
-        font-size: 24px;
-        font-weight: bold;
+    padding-top: 20px;
+    .top {
+      height: 200px;
+      div {
+        font-size: 20px;
       }
-      .personAbility {
-        .showPersonAbility {
-          left: -225%;
-          width: 70vw;
-          li {
-            .grade {
-              display: none;
-            }
-          }
+      & > div:nth-child(1) {
+        font-size: 32px;
+        font-weight: 800;
+        color: #000;
+        img {
+          width: 48px;
         }
       }
     }
-    .icon {
-      .showImg {
-        img {
-          left: -275%;
-        }
-      }
-      .showEmail {
-        .email {
-          left: -750%;
-        }
-      }
+    .bottom {
+      justify-content: center;
     }
   }
 }

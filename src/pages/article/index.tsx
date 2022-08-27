@@ -72,7 +72,6 @@ const Index = () => {
                 return (
                   <div
                     key={index}
-                    // style={{ backgroundColor: `#${config.COLOR_1[index]}` }}
                     className={styles.smallBlock}
                     onClick={() => {
                       setTableParams({
@@ -98,7 +97,6 @@ const Index = () => {
                 return (
                   <div
                     key={index}
-                    // style={{ backgroundColor: `#${config.COLOR_2[index]}` }}
                     className={styles.smallBlock}
                     onClick={() => {
                       setTableParams({
@@ -119,30 +117,27 @@ const Index = () => {
           </div>
         </div>
         <div className={styles.right}>
-          <div className={styles.title}>最新文章</div>
-          <div className={styles.bigBlock}>
-            <div className={styles.data}>
-              {pageData.dataList.map((item: any, index) => (
-                <SingleArticle data={item} key={index} />
-              ))}
-            </div>
-            <Pagination
-              className={styles.dataPagination}
-              total={pageData.total}
-              pageSize={tableParams.rows}
-              current={tableParams.page}
-              size="small"
-              showQuickJumper={false}
-              showSizeChanger={false}
-              onChange={async (page: number, pageSize: number) => {
-                setTableParams({
-                  ...tableParams,
-                  page: page,
-                  rows: pageSize
-                })
-              }}
-            />
+          <div className={styles.rightTop}>
+            {pageData.dataList.map((item: any, index) => (
+              <SingleArticle data={item} key={index} />
+            ))}
           </div>
+          <Pagination
+            className={styles.dataPagination}
+            total={pageData.total}
+            pageSize={tableParams.rows}
+            current={tableParams.page}
+            size="small"
+            showQuickJumper={false}
+            showSizeChanger={false}
+            onChange={async (page: number, pageSize: number) => {
+              setTableParams({
+                ...tableParams,
+                page: page,
+                rows: pageSize
+              })
+            }}
+          />
         </div>
       </div>
     </div>

@@ -1,10 +1,9 @@
-import { ConfigProvider, message, Tree } from 'antd'
+import { ConfigProvider, Input, message, Tree } from 'antd'
 import styles from './index.less'
 import zhCN from 'antd/es/locale/zh_CN'
 import React, { createContext, useEffect, useRef, useState } from 'react'
 import useRequest from '@ahooksjs/use-request'
 import {
-  CaretDownFilled,
   HomeOutlined,
   FileTextOutlined,
   UserSwitchOutlined,
@@ -35,9 +34,6 @@ export default (props: any) => {
       onClick: (name: string) => {
         setActive(name)
         window.location.href = `${window.location.origin}/`
-        // history.push不会刷新页面，只会刷新props.children部分，但window.location.href会刷新页面
-        // 但history.push中ios会失效
-        // history.push('/');
       }
     },
     {
@@ -45,7 +41,6 @@ export default (props: any) => {
       icon: <ReadOutlined />,
       onClick: (name: string) => {
         setActive(name)
-        // history.push('course');
         window.location.href = `${window.location.origin}/course`
       }
     },
@@ -54,30 +49,24 @@ export default (props: any) => {
       icon: <FileTextOutlined />,
       onClick: (name: string) => {
         setActive(name)
-        // history.push('article');
         window.location.href = `${window.location.origin}/article`
       }
+    },
+    {
+      name: '关于',
+      icon: <UserSwitchOutlined />,
+      onClick: (name: string) => {
+        setActive(name)
+        window.location.href = `${window.location.origin}/about`
+      }
+    },
+    {
+      name: '后台',
+      icon: <RocketOutlined />,
+      onClick: () => {
+        window.open('https://www.freenode.cn:3000')
+      }
     }
-    // {
-    //   name: '其他',
-    //   icon: <CaretDownFilled />,
-    //   children: [
-    //     {
-    //       name: '其他1',
-    //     },
-    //     {
-    //       name: '其他2',
-    //     },
-    //   ],
-    // },
-    // {
-    //   name: '关于',
-    //   icon: <UserSwitchOutlined />,
-    //   onClick: (name: string) => {
-    //     setActive(name);
-    //     history.push('about');
-    //   },
-    // },
   ])
 
   const store = {
@@ -116,26 +105,8 @@ export default (props: any) => {
   useEffect(() => {
     if (size?.width < 768) {
       run(false)
-      const arr = _.cloneDeep(menu)
-      const flag = arr.find((item) => item.name === '后台')
-      if (flag) {
-        arr.length = arr.length - 1
-        setMenu(arr)
-      }
     } else if (size?.width > 768) {
       run(true)
-      const arr = _.cloneDeep(menu)
-      const flag = arr.find((item) => item.name === '后台')
-      if (!flag) {
-        arr.splice(arr.length, 0, {
-          name: '后台',
-          icon: <RocketOutlined />,
-          onClick: () => {
-            window.open('http://www.freenode.cn:3000')
-          }
-        })
-        setMenu(arr)
-      }
     }
   }, [size])
 
@@ -146,6 +117,9 @@ export default (props: any) => {
     }
     if (pathname.includes('course')) {
       setActive('教程')
+    }
+    if (pathname.includes('about')) {
+      setActive('关于')
     }
   })
 
@@ -170,50 +144,59 @@ export default (props: any) => {
           <img src="./favicon.ico" />
           <div>拾柒的博客</div>
         </div>
-        <div className={styles.phoneRight}>{/* <SearchOutlined /> */}</div>
-        <div
-          id="menu"
-          className={styles.menu}
-          style={{ display: menuOpen ? 'flex' : 'none' }}
-        >
-          <div className={styles.navTop}>
-            {menu.map((item: any, index) => {
-              return (
-                <div
-                  className={`${styles.nav} ${
-                    item.name === active ? styles.active : null
-                  }`}
-                  key={index}
-                  onClick={() => {
-                    if (size.width < 768) {
-                      setMenuOpen(false)
-                    }
-                    item.onClick && item.onClick(item.name)
-                  }}
-                >
-                  <span>{item.name}</span>
-                  {item.icon}
+        {/* <div className={styles.phoneRight}>
+          <SearchOutlined />
+        </div> */}
+        <div className={styles.right}>
+          <Input
+            className={styles.search}
+            placeholder="输入关键词"
+            prefix={<SearchOutlined />}
+          />
+          <div
+            id="menu"
+            className={styles.menu}
+            style={{ display: menuOpen ? 'flex' : 'none' }}
+          >
+            <div className={styles.navTop}>
+              {menu.map((item: any, index) => {
+                return (
+                  <div
+                    className={`${styles.nav} ${
+                      item.name === active ? styles.active : null
+                    }`}
+                    key={index}
+                    onClick={() => {
+                      if (size.width < 768) {
+                        setMenuOpen(false)
+                      }
+                      item.onClick && item.onClick(item.name)
+                    }}
+                  >
+                    <span>{item.name}</span>
+                    {item.icon}
+                  </div>
+                )
+              })}
+            </div>
+            {window.location.pathname.includes('course')
+            && size?.width < 768
+              ? (
+                <div className={styles.navBottom}>
+                  {treeData.length
+                    ? (
+                      <Tree.DirectoryTree
+                        treeData={treeData}
+                        onSelect={onSelect}
+                        defaultExpandedKeys={[treeData?.[0]?.key]}
+                        defaultSelectedKeys={[treeData?.[0]?.children?.[0]?.key]}
+                      />
+                    )
+                    : null}
                 </div>
               )
-            })}
+              : null}
           </div>
-
-          {window.location.pathname.includes('course') && size?.width < 768
-            ? (
-              <div className={styles.navBottom}>
-                {treeData.length
-                  ? (
-                    <Tree.DirectoryTree
-                      treeData={treeData}
-                      onSelect={onSelect}
-                      defaultExpandedKeys={[treeData?.[0]?.key]}
-                      defaultSelectedKeys={[treeData?.[0]?.children?.[0]?.key]}
-                    />
-                  )
-                  : null}
-              </div>
-            )
-            : null}
         </div>
       </div>
       <div

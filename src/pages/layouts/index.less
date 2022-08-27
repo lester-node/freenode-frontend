@@ -6,9 +6,13 @@
     min-height: 50vh;
   }
   .footer {
+    padding-top: 10px;
     text-align: center;
     line-height: 2.5;
     .jumpMiit {
+      color: #000;
+    }
+    .jumpMiit:hover {
       color: @primary-color;
     }
   }
@@ -45,28 +49,34 @@
     .phoneRight {
       display: none;
     }
-    .menu {
+    .right {
       height: 100%;
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      flex: 1;
-      .active {
-        color: @primary-color;
+      .search {
+        width: 150px;
+        margin-right: 30px;
+        border-radius: 50px;
       }
-      .navTop {
-        display: flex;
-        .nav {
-          position: relative;
-          margin-right: 30px;
-          padding: 8px 0;
-          cursor: pointer;
-          span {
-            display: inline-block;
-            padding-right: 5px;
-          }
-          &:last-child {
-            margin-right: 0;
+      .menu {
+        .active {
+          color: @primary-color;
+        }
+        .navTop {
+          display: flex;
+          .nav {
+            position: relative;
+            margin-right: 30px;
+            padding: 8px 0;
+            cursor: pointer;
+            span {
+              display: inline-block;
+              padding-right: 5px;
+            }
+            &:last-child {
+              margin-right: 0;
+            }
           }
         }
       }
@@ -152,7 +162,8 @@
           .ant-tree-switcher.ant-tree-switcher-noop {
             display: none;
           }
-          .ant-tree.ant-tree-directory .ant-tree-treenode-selected:hover::before,
+          .ant-tree.ant-tree-directory
+            .ant-tree-treenode-selected:hover::before,
           .ant-tree.ant-tree-directory .ant-tree-treenode-selected::before {
             background-color: @primary-color;
           }
