@@ -101,7 +101,7 @@ export default (props: any) => {
   const { run: articleAndCourseListRun } = useRequest(
     (title) => api.articleAndCourseList({ title }),
     {
-      manual: true,
+      manual: false,
       onSuccess: (res: any) => {
         if (res.result === 0) {
           setSelectData(res.data);
@@ -158,7 +158,7 @@ export default (props: any) => {
     }
   };
 
-  const handleSelect = (obj) => {
+  const handleSelect = (obj: { label: string; value: any; }) => {
     let type = obj.label.split("-")[0];
     if (type == '文章'){
       window.location.href = `${window.location.origin}/articleDetail?id=${obj.value}`;
@@ -212,13 +212,10 @@ export default (props: any) => {
               suffixIcon={<SearchOutlined />}
               className={styles.smallSearch}
               placeholder="输入关键词"
-              defaultActiveFirstOption={false}
               showArrow={true}
-              filterOption={false}
               onSearch={_.debounce((val) => {
                 handleSearch(val);
               }, 200)}
-              notFoundContent={null}
               labelInValue={true}
               onSelect={handleSelect}
             >
@@ -244,13 +241,10 @@ export default (props: any) => {
               suffixIcon={<SearchOutlined />}
               className={styles.search}
               placeholder="输入关键词"
-              defaultActiveFirstOption={false}
               showArrow={true}
-              filterOption={false}
               onSearch={_.debounce((val) => {
                 handleSearch(val);
               }, 200)}
-              notFoundContent={null}
               labelInValue={true}
               onSelect={handleSelect}
             >

@@ -75,7 +75,6 @@ table.ProseMirror-selectednode {
 
 .toastui-editor-contents h1 {
   font-size: 24px;
-  line-height: 28px;
   border-bottom: 3px double #999;
   margin: 52px 0 15px 0;
   padding-bottom: 7px;
@@ -83,7 +82,6 @@ table.ProseMirror-selectednode {
 
 .toastui-editor-contents h2 {
   font-size: 26px;
-  line-height: 26px;
   border-bottom: 1px solid #dbdbdb;
   margin: 15px 0 10px 0;
   padding-bottom: 10px;
@@ -91,25 +89,21 @@ table.ProseMirror-selectednode {
 
 .toastui-editor-contents h3 {
   font-size: 20px;
-  line-height: 20px;
   padding: 7px 0;
 }
 
 .toastui-editor-contents h4 {
   font-size: 18px;
-  line-height: 18px;
   padding: 7px 0;
 }
 
 .toastui-editor-contents h5 {
   font-size: 16px;
-  line-height: 16px;
   padding: 5px 0;
 }
 
 .toastui-editor-contents h6 {
   font-size: 16px;
-  line-height: 16px;
   padding: 5px 0;
 }
 
