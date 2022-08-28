@@ -1,5 +1,5 @@
-import styles from './index.less'
-import React, { useState } from 'react'
+import styles from "./index.less";
+import React, { useState } from "react";
 import {
   GithubFilled,
   WechatFilled,
@@ -7,26 +7,26 @@ import {
   FrownOutlined,
   MehOutlined,
   SmileOutlined,
-  MailFilled
-} from '@ant-design/icons'
-import useRequest from '@ahooksjs/use-request'
-import api from './service'
-import { message, Rate } from 'antd'
-import { history } from 'umi'
+  MailFilled,
+} from "@ant-design/icons";
+import useRequest from "@ahooksjs/use-request";
+import api from "./service";
+import { message, Rate } from "antd";
+import { history } from "umi";
 
 const Index = () => {
   const [total, setTotal] = useState({
     course: 0,
     article: 0,
     classify: 0,
-    tag: 0
-  })
+    tag: 0,
+  });
 
   const { run: articlePageRun } = useRequest(
     () =>
       api.articlePage({
         page: 1,
-        rows: 10
+        rows: 10,
       }),
     {
       manual: false,
@@ -34,23 +34,23 @@ const Index = () => {
         if (res.result === 0) {
           setTotal({
             ...total,
-            article: res.data.total
-          })
+            article: res.data.total,
+          });
         } else {
-          message.error(res.message || '操作失败')
+          message.error(res.message || "操作失败");
         }
       },
       onError: (res: any) => {
-        message.error(res.message || '操作失败')
-      }
+        message.error(res.message || "操作失败");
+      },
     }
-  )
+  );
 
   const { run: classifyPageRun } = useRequest(
     () =>
       api.classifyPage({
         page: 1,
-        rows: 10
+        rows: 10,
       }),
     {
       manual: false,
@@ -58,23 +58,23 @@ const Index = () => {
         if (res.result === 0) {
           setTotal({
             ...total,
-            classify: res.data.total
-          })
+            classify: res.data.total,
+          });
         } else {
-          message.error(res.message || '操作失败')
+          message.error(res.message || "操作失败");
         }
       },
       onError: (res: any) => {
-        message.error(res.message || '操作失败')
-      }
+        message.error(res.message || "操作失败");
+      },
     }
-  )
+  );
 
   const { run: tagPageRun } = useRequest(
     () =>
       api.tagPage({
         page: 1,
-        rows: 10
+        rows: 10,
       }),
     {
       manual: false,
@@ -82,23 +82,23 @@ const Index = () => {
         if (res.result === 0) {
           setTotal({
             ...total,
-            tag: res.data.total
-          })
+            tag: res.data.total,
+          });
         } else {
-          message.error(res.message || '操作失败')
+          message.error(res.message || "操作失败");
         }
       },
       onError: (res: any) => {
-        message.error(res.message || '操作失败')
-      }
+        message.error(res.message || "操作失败");
+      },
     }
-  )
+  );
 
   const { run: coursePageRun } = useRequest(
     () =>
       api.coursePage({
         page: 1,
-        rows: 10
+        rows: 10,
       }),
     {
       manual: false,
@@ -106,29 +106,29 @@ const Index = () => {
         if (res.result === 0) {
           setTotal({
             ...total,
-            course: res.data.total
-          })
+            course: res.data.total,
+          });
         } else {
-          message.error(res.message || '操作失败')
+          message.error(res.message || "操作失败");
         }
       },
       onError: (res: any) => {
-        message.error(res.message || '操作失败')
-      }
+        message.error(res.message || "操作失败");
+      },
     }
-  )
+  );
 
   const customIcons: Record<number, React.ReactNode> = {
     1: <FrownOutlined />,
     2: <FrownOutlined />,
     3: <MehOutlined />,
     4: <SmileOutlined />,
-    5: <SmileOutlined />
-  }
+    5: <SmileOutlined />,
+  };
 
   return (
     <div className={styles.main}>
-      <div className={styles.font}>
+      <div className={styles.top}>
         <div>Hello！欢迎观看拾柒的博客！</div>
         <div>
           此网站是我对于前端开发的总结和理解。如有错误的地方，请一定要指出，相互交流开发心得。
@@ -255,76 +255,51 @@ const Index = () => {
           ），如有好的兼职或开源项目的机会，也欢迎联系。
         </div>
       </div>
-      <div className={styles.icon}>
+      <div className={styles.middle}>
         <div>
           <GithubFilled
             onClick={() => {
-              window.open('https://github.com/blog-code')
+              window.open("https://github.com/blog-code");
             }}
           />
         </div>
         <div className={styles.showImg}>
           <WechatFilled />
-          {/* 使用相对地址必须使用require，不使用会去找public文件夹里面  */}
           <img
-            src={require('./imgs/weixin.jpg')}
+            src={require("./imgs/weixin.jpg")}
             alt=""
             className={styles.imgTwo}
           />
         </div>
         <div className={styles.showImg}>
           <QqCircleFilled />
-          <img src={require('./imgs/qq.jpg')} alt="" />
+          <img src={require("./imgs/qq.jpg")} alt="" />
         </div>
         <div className={styles.showEmail}>
           <MailFilled />
           <div className={styles.email}>邮箱：13974412325@163.com</div>
         </div>
       </div>
-      <div className={styles.middle}>
-        <div
-          className={styles.middleDiv}
-          onClick={() => {
-            window.location.href = `${window.location.origin}/course`
-            // history.push('course');
-          }}
-        >
+      <div className={styles.bottom}>
+        <div className={styles.middleDiv}>
           <div>教程</div>
           <div>{total.course}</div>
         </div>
-        <div
-          className={styles.middleDiv}
-          onClick={() => {
-            window.location.href = `${window.location.origin}/article`
-            // history.push('article');
-          }}
-        >
+        <div className={styles.middleDiv}>
           <div>文章</div>
           <div>{total.article}</div>
         </div>
-        <div
-          className={styles.middleDiv}
-          onClick={() => {
-            window.location.href = `${window.location.origin}/article`
-            // history.push('article');
-          }}
-        >
+        <div className={styles.middleDiv}>
           <div>分类</div>
           <div>{total.classify}</div>
         </div>
-        <div
-          className={styles.middleDiv}
-          onClick={() => {
-            window.location.href = `${window.location.origin}/article`
-            // history.push('article');
-          }}
-        >
+        <div className={styles.middleDiv}>
           <div>标签</div>
           <div>{total.tag}</div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;

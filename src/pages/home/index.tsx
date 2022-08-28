@@ -1,18 +1,18 @@
-import styles from './index.less'
-import React, { useContext, useEffect } from 'react'
-import { LayoutContext } from '../layouts/index'
+import styles from "./index.less";
+import React, { useContext, useEffect } from "react";
+import { LayoutContext } from "../layouts/index";
 
 const Index = () => {
-  const { size } = useContext<any>(LayoutContext)
+  const { size } = useContext<any>(LayoutContext);
 
   useEffect(() => {
     if (size && size.width < 1000) {
-      const topDiv: any = document.getElementById('top')
-      const bottomDiv: any = document.getElementById('bottom')
-      topDiv.style.width = `${size.width - 40}px`
-      bottomDiv.style.width = `${size.width - 40}px`
+      const topDiv: any = document.getElementById("top");
+      const bottomDiv: any = document.getElementById("bottom");
+      topDiv.style.width = `${size.width - 40}px`;
+      bottomDiv.style.width = `${size.width - 40}px`;
     }
-  }, [size])
+  }, [size]);
 
   return (
     <div className={styles.main}>
@@ -29,7 +29,7 @@ const Index = () => {
           <div
             className={styles.blockTop}
             onClick={() => {
-              window.location.href = `${window.location.origin}/course`
+              window.location.href = `${window.location.origin}/course`;
             }}
           >
             知识总结（教程）
@@ -42,7 +42,7 @@ const Index = () => {
           <div
             className={styles.blockTop}
             onClick={() => {
-              window.location.href = `${window.location.origin}/article`
+              window.location.href = `${window.location.origin}/article`;
             }}
           >
             案例解析（文章）
@@ -55,7 +55,7 @@ const Index = () => {
           <div
             className={styles.blockTop}
             onClick={() => {
-              window.location.href = `${window.location.origin}/about`
+              window.location.href = `${window.location.origin}/about`;
             }}
           >
             个人描述（关于）
@@ -68,7 +68,7 @@ const Index = () => {
           <div
             className={styles.blockTop}
             onClick={() => {
-              window.open('https://www.freenode.cn:3000')
+              window.open("https://www.freenode.cn:3000");
             }}
           >
             管理系统（后台）
@@ -79,7 +79,7 @@ const Index = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;

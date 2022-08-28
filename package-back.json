@@ -15,9 +15,7 @@
     "commit-msg": "commitlint -e"
   },
   "lint-staged": {
-    "*.less": [
-      "stylelint src/**/*.less --fix --custom-syntax postcss-less"
-    ],
+    "*.less": ["stylelint src/**/*.less --fix --custom-syntax postcss-less"],
     "src/**/*.{js,jsx,ts,tsx}": [
       "prettier -c --write .",
       "eslint --fix --ext .js,.jsx,.ts,.tsx src"

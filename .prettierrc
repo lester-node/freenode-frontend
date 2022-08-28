@@ -1,11 +1,33 @@
 {
-  "singleQuote": true,
-  "trailingComma": "all",
-  "printWidth": 80,
-  "overrides": [
-    {
-      "files": ".prettierrc",
-      "options": { "parser": "json" }
-    }
-  ]
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[less]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "prettier.printWidth": 120,
+  "prettier.tabWidth": 2,
+  "prettier.useTabs": false,
+  "prettier.semi": true,
+  "prettier.singleQuote": false,
+  "prettier.proseWrap": "preserve",
+  "prettier.arrowParens": "avoid",
+  "prettier.bracketSpacing": true,
+  "prettier.endOfLine": "auto",
+  "prettier.eslintIntegration": false,
+  "prettier.htmlWhitespaceSensitivity": "ignore",
+  "prettier.ignorePath": ".prettierignore",
+  "prettier.jsxBracketSameLine": false,
+  "prettier.jsxSingleQuote": false,
+  "prettier.parser": "babylon",
+  "prettier.requireConfig": false,
+  "prettier.stylelintIntegration": false,
+  "prettier.trailingComma": "es5",
+  "prettier.tslintIntegration": false
 }

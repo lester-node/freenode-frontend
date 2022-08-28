@@ -1,14 +1,14 @@
 const config = {
   PAGEDATA: {
     dataList: [],
-    total: 0
+    total: 0,
   },
   TABLEPARAMS: {
     page: 1,
     rows: 10,
-    classifyId: '',
-    tagId: ''
-  }
-}
+    classifyId: "",
+    tagId: "",
+  },
+};
 
-export default config
+export default config;
