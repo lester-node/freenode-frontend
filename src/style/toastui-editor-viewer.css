@@ -238,7 +238,7 @@ table.ProseMirror-selectednode {
 }
 
 .toastui-editor-contents ul > li::before {
-  content: '';
+  content: "";
   margin-top: 12px;
   margin-left: -15px;
   width: 5px;
@@ -248,7 +248,7 @@ table.ProseMirror-selectednode {
 }
 
 .toastui-editor-contents ol > li::before {
-  content: '.' counter(li);
+  content: "." counter(li);
   margin-left: -28px;
   width: 24px;
   text-align: right;
@@ -293,7 +293,7 @@ table.ProseMirror-selectednode {
 }
 
 .toastui-editor-contents .image-link:hover::before {
-  content: '';
+  content: "";
   position: absolute;
   width: 30px;
   height: 30px;
@@ -319,7 +319,7 @@ table.ProseMirror-selectednode {
   background-repeat: no-repeat;
   background-size: 18px 18px;
   background-position: center;
-  content: '';
+  content: "";
   margin-left: 0;
   margin-top: 0;
   border-radius: 2px;
