@@ -9,11 +9,6 @@ export default [
         component: '@/pages/home',
       },
       {
-        title: '教程',
-        path: 'course',
-        component: '@/pages/course',
-      },
-      {
         title: '文章',
         path: 'article',
         component: '@/pages/article',

@@ -3,10 +3,12 @@
   padding: 30px 100px;
   display: flex;
   justify-content: center;
+
   .left {
     width: 20vw;
     position: fixed;
     left: 100px;
+
     .block {
       width: 100%;
       padding: 10px;
@@ -14,17 +16,25 @@
       border-radius: 20px;
       margin-bottom: 20px;
       box-shadow: @shadow;
+
       .title {
         font-size: @big-text-size;
         padding-bottom: 5px;
         border-bottom: @split-line;
       }
+
       .bigBlock {
         padding-top: 15px;
         flex-direction: row;
+
+        .activeBlock {
+          color: #fff !important;
+          background-color: @primary-color !important;
+        }
+
         .smallBlock {
           cursor: pointer;
-          font-size: @default-text-size;
+          font-size: 14px;
           display: inline-flex;
           justify-content: center;
           align-items: center;
@@ -36,9 +46,11 @@
           margin: 0 3% 3% 0;
           opacity: 0.9;
         }
+
         .smallBlock:nth-child(3n) {
           margin: 0;
         }
+
         .smallBlock:hover {
           color: #fff;
           background-color: @primary-color !important;
@@ -46,12 +58,16 @@
       }
     }
   }
+
   .right {
     width: 100vw;
+    min-height: calc(100vh - 255px);
     padding-left: calc(20vw + 30px);
+
     .rightTop {
       width: calc(80vw - 230px);
     }
+
     .dataPagination {
       text-align: center;
     }
@@ -63,8 +79,10 @@
     .left {
       display: none;
     }
+
     .right {
       padding-left: 0;
+
       .rightTop {
         width: calc(100vw - 200px);
       }
@@ -74,11 +92,12 @@
 
 @media (min-width: 0) and (max-width: 768px) {
   .main {
-    // padding: 0 10px 10px 10px;
     padding-top: 15px;
+
     .left {
       display: none;
     }
+
     .right {
       .rightTop {
         width: calc(100vw - 40px);

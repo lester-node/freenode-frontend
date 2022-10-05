@@ -10,11 +10,17 @@
 
 <body>
   <div id="root"></div>
-
   <script src="./resources/js/jquery.min.js"></script>
   <script>
     (function () {
       $("html").attr("style", "font-size: 16px");
+      if (window.location.pathname == '/'){
+        var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = "./resources/js/yinhua.js";
+        head.appendChild(script);
+      }
     })()
   </script>
 </body>

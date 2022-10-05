@@ -8,53 +8,61 @@
   box-shadow: @shadow;
   margin-bottom: 30px;
   border-radius: 20px;
+
   .icon {
     padding-right: 3px;
     display: flex;
     align-items: center;
   }
+
   .top {
     display: flex;
     flex-direction: column;
+
     .title {
       font-size: 36px;
       font-weight: 600;
       overflow-wrap: break-word;
     }
+
     .tagClassify {
       padding-top: 10px;
       display: flex;
       flex-wrap: wrap;
       color: #fff;
-      font-size: @default-text-size;
+      font-size: 14px;
+      margin-bottom: 10px;
+
       .classify {
-        margin-bottom: 10px;
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 0 10px;
+        padding: 3px 8px;
         margin-right: 10px;
         border-radius: 12px;
         background-color: @primary-color;
       }
+
       .tag {
-        margin-bottom: 10px;
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 0 10px;
+        padding: 3px 8px;
         margin-right: 10px;
         border-radius: 12px;
         background-color: @primary-color;
       }
     }
   }
+
   .middle {
     padding-bottom: 10px;
   }
+
   .bottom {
     display: flex;
     justify-content: space-between;
+
     .time {
       color: @primary-color;
       display: flex;
@@ -62,6 +70,7 @@
       align-items: center;
       font-size: 18px;
     }
+
     .jumpButton {
       width: 120px;
       height: 45px;
@@ -75,6 +84,7 @@
 @media (min-width: 0) and (max-width: 768px) {
   .article {
     margin-bottom: 15px;
+
     .top {
       .title {
         font-size: 24px;

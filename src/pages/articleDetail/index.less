@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   padding: 30px 100px;
+
   .content {
     width: calc(65vw + 270px);
     display: flex;
@@ -9,6 +10,7 @@
     align-items: center;
     padding: 20px;
     border-radius: 10px;
+
     .title {
       width: calc(65vw + 36px);
       font-size: 24px;
@@ -17,6 +19,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+
       .back {
         padding: 0 10px;
         font-size: @default-text-size;
@@ -27,61 +30,69 @@
         color: @primary-color;
         border: 1px solid @primary-color;
         border-radius: 20px;
+
         .icon {
           padding-right: 5px;
         }
+
         &:hover {
-          color: #61BE92;
-          border: 1px solid #61BE92;
+          color: #61be92;
+          border: 1px solid #61be92;
         }
       }
+
       .middle {
         display: flex;
         height: 100%;
         align-items: center;
       }
+
       .right {
         font-size: @default-text-size;
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100%;
+
         .classify {
           color: #fff;
           display: flex;
           justify-content: center;
           align-items: center;
           margin-right: 10px;
-          font-size: 12px;
+          font-size: 14px;
           height: 80%;
           padding: 0 10px;
           border-radius: 12px;
           background-color: @primary-color;
         }
+
         .tag {
           color: #fff;
           display: flex;
           justify-content: center;
           align-items: center;
           margin-right: 10px;
-          font-size: 12px;
+          font-size: 14px;
           height: 80%;
           padding: 0 10px;
           border-radius: 12px;
           background-color: @primary-color;
         }
+
         .time {
           color: #fff;
           display: flex;
           justify-content: center;
           align-items: center;
           margin-right: 10px;
-          font-size: 12px;
+          font-size: 14px;
           height: 80%;
           padding: 0 10px;
           border-radius: 12px;
           background-color: @primary-color;
         }
+
         .icon {
           padding-right: 3px;
           display: flex;
@@ -89,6 +100,7 @@
         }
       }
     }
+
     .articleContent {
       width: calc(65vw + 36px);
     }
@@ -98,10 +110,12 @@
 @media (min-width: 768px) and (max-width: 992px) {
   .main {
     padding: 30px 50px;
+
     .content {
       .title {
         width: calc(80vw + 36px);
       }
+
       .articleContent {
         width: calc(80vw + 36px);
       }
@@ -112,33 +126,41 @@
 @media (min-width: 0) and (max-width: 768px) {
   .main {
     padding: 10px 0;
+
     .content {
       width: 100%;
       padding: 0;
       display: flex;
       justify-content: center;
+
       .title {
         width: calc(80vw + 36px);
         flex-direction: column;
+
         .back {
           color: @primary-color;
         }
+
         .right {
           flex-wrap: wrap;
+
           .classify {
             height: 25px;
             margin: 5px;
           }
+
           .tag {
             height: 25px;
             margin: 5px;
           }
+
           .time {
             height: 25px;
             margin: 5px;
           }
         }
       }
+
       .articleContent {
         width: calc(80vw + 36px);
       }
