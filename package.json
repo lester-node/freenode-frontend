@@ -16,8 +16,7 @@
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
-      "prettier -c --write .",
-      "eslint --fix --ext .js,.jsx,.ts,.tsx src"
+      "prettier -c --write ."
     ]
   },
   "dependencies": {
