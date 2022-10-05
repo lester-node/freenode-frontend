@@ -1,52 +1,52 @@
-import styles from './index.less'
-import React from 'react'
+import styles from "./index.less";
+import React from "react";
 import {
   EyeOutlined,
   GithubFilled,
   DribbbleSquareOutlined,
-  WechatFilled
-} from '@ant-design/icons'
-import Tooltip from 'antd/es/tooltip'
+  WechatFilled,
+} from "@ant-design/icons";
+import Tooltip from "antd/es/tooltip";
 
 const Index = () => {
   const data = [
     {
-      title: '案例解析（文章）',
-      describe: '在工作中遇到的各种花里胡哨的问题进行记录',
-      img: './images/article.jpg',
+      title: "案例解析（文章）",
+      describe: "在工作中遇到的各种花里胡哨的问题进行记录",
+      img: "./images/article.jpg",
       onClick: () => {
-        window.location.href = `${window.location.origin}/course`
-      }
+        window.location.href = `${window.location.origin}/course`;
+      },
     },
     {
-      title: '随笔',
-      describe: '记录生活中的点点滴滴',
-      img: './images/record.jpg',
+      title: "随笔",
+      describe: "记录生活中的点点滴滴",
+      img: "./images/record.jpg",
       onClick: () => {
-        window.location.href = `${window.location.origin}/article`
-      }
+        window.location.href = `${window.location.origin}/article`;
+      },
     },
     {
-      title: '个人描述（关于）',
-      describe: '记载此网站前后端所使用的技术和个人总结',
-      img: './images/person.jpg',
+      title: "个人描述（关于）",
+      describe: "记载此网站前后端所使用的技术和个人总结",
+      img: "./images/person.jpg",
       onClick: () => {
-        window.location.href = `${window.location.origin}/about`
-      }
+        window.location.href = `${window.location.origin}/about`;
+      },
     },
     {
-      title: '管理系统（后台）',
-      describe: '对教程、文章、分类和标签的博客管理系统',
-      img: './images/computer.jpg',
+      title: "管理系统（后台）",
+      describe: "对教程、文章、分类和标签的博客管理系统",
+      img: "./images/computer.jpg",
       onClick: () => {
-        window.open('https://www.freenode.cn:3000')
-      }
-    }
-  ]
+        window.open("https://www.freenode.cn:3000");
+      },
+    },
+  ];
 
   const jumpArticle = () => {
-    window.location.href = `${window.location.origin}/article`
-  }
+    window.location.href = `${window.location.origin}/article`;
+  };
 
   return (
     <div className={styles.main}>
@@ -69,7 +69,7 @@ const Index = () => {
               <GithubFilled
                 className={styles.icon}
                 onClick={() => {
-                  window.open('https://github.com/blog-code')
+                  window.open("https://github.com/blog-code");
                 }}
               />
             </Tooltip>
@@ -77,7 +77,7 @@ const Index = () => {
               <DribbbleSquareOutlined
                 className={styles.icon}
                 onClick={() => {
-                  window.open('https://blog.csdn.net/xx1233218')
+                  window.open("https://blog.csdn.net/xx1233218");
                 }}
               />
             </Tooltip>
@@ -97,12 +97,12 @@ const Index = () => {
                 <div className={styles.blockTop}>{item.title}</div>
                 <div className={styles.blockBottom}>{item.describe}</div>
               </div>
-            )
+            );
           })}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;
