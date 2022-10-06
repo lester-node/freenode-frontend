@@ -1,6 +1,5 @@
 import styles from "./index.less";
-import React, { useState } from "react";
-import { useMount } from "ahooks";
+import React, { useEffect, useRef, useState } from "react";
 import useRequest from "@ahooksjs/use-request";
 import api from "./service";
 import { message } from "antd";
@@ -18,6 +17,7 @@ import moment from "moment";
 import { history } from "umi";
 
 const Index = (props: any) => {
+  const viewRef = useRef<any>();
   const query = props.location.query;
   const [articleData, setArticleData] = useState({
     title: "",
@@ -27,11 +27,11 @@ const Index = (props: any) => {
     content: "",
   });
 
-  useMount(() => {
+  useEffect(() => {
     if (query?.id) {
       articleSelectOneRun({ id: query?.id });
     }
-  });
+  }, [query.id]);
 
   const { run: articleSelectOneRun } = useRequest(
     (obj) => api.articleSelectOne(obj),
@@ -39,6 +39,7 @@ const Index = (props: any) => {
       manual: true,
       onSuccess: (res: { result: number; data: any; message: string }) => {
         if (res.result === 0) {
+          viewRef.current?.getInstance().setMarkdown(res.data.content);
           setArticleData(res.data);
         } else {
           message.error(res.message || "操作失败");
@@ -89,11 +90,9 @@ const Index = (props: any) => {
             </div>
           </div>
         </div>
-        {!_.isEmpty(articleData) ? (
-          <div className={styles.articleContent}>
-            <Viewer initialValue={articleData.content} />
-          </div>
-        ) : null}
+        <div className={styles.articleContent}>
+          <Viewer ref={viewRef} />
+        </div>
       </div>
     </div>
   );
