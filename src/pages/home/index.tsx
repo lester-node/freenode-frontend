@@ -7,6 +7,7 @@ import {
   WechatFilled,
 } from "@ant-design/icons";
 import Tooltip from "antd/es/tooltip";
+import { history } from "umi";
 
 const Index = () => {
   const data = [
@@ -15,7 +16,7 @@ const Index = () => {
       describe: "在工作中遇到的各种花里胡哨的问题进行记录",
       img: "./images/article.jpg",
       onClick: () => {
-        window.location.href = `${window.location.origin}/course`;
+        history.push("/course");
       },
     },
     {
@@ -23,7 +24,7 @@ const Index = () => {
       describe: "记录生活中的点点滴滴",
       img: "./images/record.jpg",
       onClick: () => {
-        window.location.href = `${window.location.origin}/article`;
+        history.push("/article");
       },
     },
     {
@@ -31,7 +32,7 @@ const Index = () => {
       describe: "记载此网站前后端所使用的技术和个人总结",
       img: "./images/person.jpg",
       onClick: () => {
-        window.location.href = `${window.location.origin}/about`;
+        history.push("/about");
       },
     },
     {
@@ -45,7 +46,7 @@ const Index = () => {
   ];
 
   const jumpArticle = () => {
-    window.location.href = `${window.location.origin}/article`;
+    history.push("/article");
   };
 
   return (

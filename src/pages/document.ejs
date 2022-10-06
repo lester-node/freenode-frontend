@@ -4,6 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="拾柒的个人博客,一个很菜的前端工程师总结和理解">
+  <meta name="keywords" content="博客,HTML,CSS,JavaScript,React,Webpack,GitHub,AntD,HTTP,NodeJS,Koa2,Nginx,浏览器,算法,开发,互联网,编程,软件">
   <link rel="icon" href="./favicon.ico" type="image/x-icon" />
   <title>拾柒的博客</title>
 </head>
@@ -14,13 +16,12 @@
   <script>
     (function () {
       $("html").attr("style", "font-size: 16px");
-      if (window.location.pathname == '/'){
-        var head = document.getElementsByTagName('head')[0];
-        var script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = "./resources/js/yinhua.js";
-        head.appendChild(script);
-      }
+      let head = document.getElementsByTagName("head")[0];
+      let script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = "./resources/js/yinhua.js";
+      script.id = "yinhua";
+      head.appendChild(script);
     })()
   </script>
 </body>

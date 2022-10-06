@@ -76,8 +76,25 @@
       height: 100%;
       box-shadow: @shadow;
       border-radius: 20px;
-
+      padding: 10px;
       .website {
+        .title {
+          text-align: center;
+          font-size: 24px;
+          font-weight: bold;
+          padding: 0 15px 15px 15px;
+        }
+
+        .content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          font-size: 16px;
+          padding: 0 20px;
+        }
+      }
+      .overview {
         .title {
           text-align: center;
           font-size: 24px;
@@ -91,9 +108,9 @@
           align-items: center;
           justify-content: center;
           font-size: 16px;
+          padding: 0 20px;
         }
       }
-
       .skill {
         .title {
           text-align: center;
@@ -104,26 +121,19 @@
 
         .content {
           display: flex;
-          flex-direction: column;
-          align-items: center;
+          flex-wrap: wrap;
           justify-content: center;
+          div {
+            padding: 5px 8px;
+            box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
+            margin: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+          }
 
-          .row {
-            display: flex;
-            margin-bottom: 30px;
-
-            div {
-              padding: 5px 8px;
-              box-shadow: 0 3px 5px rgb(0 0 0 / 20%);
-              margin: 0 20px;
-              border-radius: 5px;
-              cursor: pointer;
-            }
-
-            div:hover {
-              background-color: @primary-color !important;
-              color: #fff !important;
-            }
+          div:hover {
+            background-color: @primary-color !important;
+            color: #fff !important;
           }
         }
       }
@@ -139,26 +149,20 @@
 
     .right {
       padding-left: 0;
-
-      .rightTop {
-        width: calc(100vw - 200px);
-      }
     }
   }
 }
 
 @media (min-width: 0) and (max-width: 768px) {
   .main {
-    padding-top: 15px;
+    padding: 15px 0 0 0;
 
     .left {
       display: none;
     }
 
     .right {
-      .rightTop {
-        width: calc(100vw - 40px);
-      }
+      padding: 0 20px;
     }
   }
 }

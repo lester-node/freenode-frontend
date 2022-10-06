@@ -20,6 +20,13 @@ const Index = () => {
     { id: "", name: "", articleTotal: 0 },
   ]);
 
+  // useEffect(() => {
+  //   if (window.location.pathname == "/article") {
+  //     var yinhua = document.getElementById("yinhua");
+  //     console.log('yinhua',yinhua);
+  //   }
+  // }, []);
+
   useEffect(() => {
     articlePageRun(tableParams);
   }, [tableParams.page, tableParams.tagId, tableParams.classifyId]);
@@ -111,7 +118,6 @@ const Index = () => {
             <div className={styles.title}>标签</div>
             <div className={styles.bigBlock}>
               {tagData.map((item, index) => {
-                console.log("item22", item);
                 return (
                   <div
                     key={index}

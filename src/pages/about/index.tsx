@@ -1,11 +1,9 @@
 import styles from "./index.less";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import useRequest from "@ahooksjs/use-request";
 import api from "./service";
-import { message, Pagination, Tooltip } from "antd";
-import config from "./config";
+import { message, Tooltip } from "antd";
 import {
-  EyeOutlined,
   GithubFilled,
   DribbbleSquareOutlined,
   WechatFilled,
@@ -142,37 +140,35 @@ const Index = () => {
                 此网站是我对于前端开发的总结和理解。如有错误的地方，请一定要指出，相互交流开发心得。
               </div>
             </div>
+            {/* <div className={styles.overview}>
+              <div className={styles.title}>文章概括</div>
+              <div className={styles.content}>
+                
+              </div>
+            </div> */}
             <div className={styles.skill}>
               <div className={styles.title}>拥有技能</div>
               <div className={styles.content}>
-                <div className={styles.row}>
-                  <div style={{ background: "#F9EBEA" }}>html</div>
-                  <div style={{ background: "#85C1E9" }}>css</div>
-                  <div style={{ background: "#FEF9E7" }}>javascript</div>
-                  <div style={{ background: "#F8F9F9" }}>typescript</div>
-                </div>
-                <div className={styles.row}>
-                  <div style={{ background: "#85C1E9" }}>react</div>
-                  <div style={{ background: "#A3E4D7" }}>vue</div>
-                  <div style={{ background: "#D7BDE2" }}>webpack</div>
-                  <div style={{ background: "#F9E79F" }}>gulp</div>
-                  <div style={{ background: "#F5EEF8" }}>webGL</div>
-                  <div style={{ background: "#F8C471" }}>uniapp</div>
-                </div>
-                <div className={styles.row}>
-                  <div style={{ background: "#FEF9E7" }}>h5</div>
-                  <div style={{ background: "#D5F5E3" }}>小程序</div>
-                  <div style={{ background: "#82E0AA" }}>node</div>
-                  <div style={{ background: "#EAD3F0" }}>koa2</div>
-                  <div style={{ background: "#F8F9F9" }}>nginx</div>
-                  <div style={{ background: "#F5EEF8" }}>docker</div>
-                </div>
-                <div className={styles.row}>
-                  <div style={{ background: "#82E0AA" }}>jenkins</div>
-                  <div style={{ background: "#E8F8F5" }}>linux</div>
-                  <div style={{ background: "#00CCFF" }}>mysql</div>
-                  <div style={{ background: "#90C5F0" }}>git</div>
-                </div>
+                <div style={{ background: "#F9EBEA" }}>html</div>
+                <div style={{ background: "#85C1E9" }}>css</div>
+                <div style={{ background: "#FEF9E7" }}>javascript</div>
+                <div style={{ background: "#F8F9F9" }}>typescript</div>
+                <div style={{ background: "#85C1E9" }}>react</div>
+                <div style={{ background: "#A3E4D7" }}>vue</div>
+                <div style={{ background: "#D7BDE2" }}>webpack</div>
+                <div style={{ background: "#F9E79F" }}>gulp</div>
+                <div style={{ background: "#F5EEF8" }}>webGL</div>
+                <div style={{ background: "#F8C471" }}>uniapp</div>
+                <div style={{ background: "#FEF9E7" }}>h5</div>
+                <div style={{ background: "#D5F5E3" }}>小程序</div>
+                <div style={{ background: "#82E0AA" }}>node</div>
+                <div style={{ background: "#EAD3F0" }}>koa2</div>
+                <div style={{ background: "#F8F9F9" }}>nginx</div>
+                <div style={{ background: "#F5EEF8" }}>docker</div>
+                <div style={{ background: "#82E0AA" }}>jenkins</div>
+                <div style={{ background: "#E8F8F5" }}>linux</div>
+                <div style={{ background: "#00CCFF" }}>mysql</div>
+                <div style={{ background: "#90C5F0" }}>git</div>
               </div>
             </div>
           </div>

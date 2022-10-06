@@ -32,7 +32,7 @@ export default (props: { children: any }) => {
       icon: <HomeOutlined />,
       onClick: (name: string) => {
         setActive(name);
-        window.location.href = `${window.location.origin}/`;
+        history.push(`/`);
       },
     },
     {
@@ -40,7 +40,7 @@ export default (props: { children: any }) => {
       icon: <FileTextOutlined />,
       onClick: (name: string) => {
         setActive(name);
-        window.location.href = `${window.location.origin}/article`;
+        history.push(`/article`);
       },
     },
     {
@@ -48,7 +48,7 @@ export default (props: { children: any }) => {
       icon: <UserSwitchOutlined />,
       onClick: (name: string) => {
         setActive(name);
-        window.location.href = `${window.location.origin}/about`;
+        history.push(`/about`);
       },
     },
     {
@@ -106,18 +106,10 @@ export default (props: { children: any }) => {
     }
   });
 
-  const handleSearch = (newValue: string) => {
-    if (newValue) {
-      articleListRun(newValue);
-    } else {
-      setSelectData([]);
-    }
-  };
-
   const handleSelect = (obj: { label: string; value: string }) => {
     const type = obj.label.split("-")[0];
     if (type === "文章") {
-      window.location.href = `${window.location.origin}/articleDetail?id=${obj.value}`;
+      history.push(`/articleDetail?id=${obj.value}`);
     }
   };
 
@@ -166,9 +158,8 @@ export default (props: { children: any }) => {
               className={styles.smallSearch}
               placeholder="输入关键词"
               showArrow={true}
-              onSearch={_.debounce((val) => {
-                handleSearch(val);
-              }, 200)}
+              optionFilterProp="children"
+              allowClear={true}
               labelInValue={true}
               onSelect={handleSelect}
               getPopupContainer={(triggerNode) => triggerNode.parentNode}
@@ -198,10 +189,9 @@ export default (props: { children: any }) => {
               className={styles.search}
               placeholder="输入关键词"
               showArrow={true}
-              onSearch={_.debounce((val) => {
-                handleSearch(val);
-              }, 200)}
+              optionFilterProp="children"
               labelInValue={true}
+              allowClear={true}
               onSelect={handleSelect}
               getPopupContainer={(triggerNode) => triggerNode.parentNode}
             >
@@ -285,8 +275,7 @@ export default (props: { children: any }) => {
         <a
           className={styles.jumpMiit}
           onClick={() => {
-            window.location.href =
-              "https://beian.miit.gov.cn/#/Integrated/index";
+            window.open("https://beian.miit.gov.cn/#/Integrated/index");
           }}
         >
           浙ICP备20011916号-1

@@ -15,6 +15,7 @@ import {
   TagOutlined,
 } from "@ant-design/icons";
 import moment from "moment";
+import { history } from "umi";
 
 const Index = (props: any) => {
   const query = props.location.query;
@@ -56,7 +57,7 @@ const Index = (props: any) => {
           <div
             className={styles.back}
             onClick={() => {
-              window.location.href = `${window.location.origin}/article`;
+              history.push("/article");
             }}
           >
             <HomeOutlined className={styles.icon} />
