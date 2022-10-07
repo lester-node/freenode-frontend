@@ -16,7 +16,7 @@ const Index = () => {
       describe: "在工作中遇到的各种花里胡哨的问题进行记录",
       img: "./images/article.jpg",
       onClick: () => {
-        history.push("/course");
+        history.push("/article");
       },
     },
     {

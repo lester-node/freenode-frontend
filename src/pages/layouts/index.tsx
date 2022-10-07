@@ -96,7 +96,7 @@ export default (props: { children: any }) => {
     }
   }, [size]);
 
-  useMount(() => {
+  useEffect(() => {
     const pathname = window.location.pathname;
     if (pathname.includes("articleDetail") || pathname.includes("article")) {
       setActive("文章");
@@ -104,7 +104,7 @@ export default (props: { children: any }) => {
     if (pathname.includes("about")) {
       setActive("关于");
     }
-  });
+  }, [window.location.pathname]);
 
   const handleSelect = (obj: { label: string; value: string }) => {
     const type = obj.label.split("-")[0];
