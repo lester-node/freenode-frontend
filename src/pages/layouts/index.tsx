@@ -113,6 +113,9 @@ export default (props: { children: any }) => {
     if (pathname.includes("about")) {
       setActive("关于");
     }
+    if (pathname.includes("course")) {
+      setActive("教程");
+    }
   }, [window.location.pathname]);
 
   const handleSelect = (obj: { label: string; value: string }) => {
