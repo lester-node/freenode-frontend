@@ -12,15 +12,7 @@ import { history } from "umi";
 const Index = () => {
   const data = [
     {
-      title: "案例解析（文章）",
-      describe: "在工作中遇到的各种花里胡哨的问题进行记录",
-      img: "./images/article.jpg",
-      onClick: () => {
-        history.push("/article");
-      },
-    },
-    {
-      title: "随笔",
+      title: "教程（心得体会）",
       describe: "记录生活中的点点滴滴",
       img: "./images/record.jpg",
       onClick: () => {
@@ -28,7 +20,15 @@ const Index = () => {
       },
     },
     {
-      title: "个人描述（关于）",
+      title: "文章（案例解析）",
+      describe: "在工作中遇到的各种花里胡哨的问题进行记录",
+      img: "./images/article.jpg",
+      onClick: () => {
+        history.push("/article");
+      },
+    },
+    {
+      title: "关于（个人描述）",
       describe: "记载此网站前后端所使用的技术和个人总结",
       img: "./images/person.jpg",
       onClick: () => {
@@ -36,7 +36,7 @@ const Index = () => {
       },
     },
     {
-      title: "管理系统（后台）",
+      title: "后台（管理系统）",
       describe: "对教程、文章、分类和标签的博客管理系统",
       img: "./images/computer.jpg",
       onClick: () => {
@@ -70,7 +70,7 @@ const Index = () => {
               <GithubFilled
                 className={styles.icon}
                 onClick={() => {
-                  window.open("https://github.com/blog-code");
+                  window.open("https://github.com/lester-node");
                 }}
               />
             </Tooltip>

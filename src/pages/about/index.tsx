@@ -114,7 +114,7 @@ const Index = () => {
                 <GithubFilled
                   className={styles.icon}
                   onClick={() => {
-                    window.open("https://github.com/blog-code");
+                    window.open("https://github.com/lester-node");
                   }}
                 />
               </Tooltip>

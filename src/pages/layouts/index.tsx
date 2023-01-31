@@ -10,9 +10,10 @@ import {
   RocketOutlined,
   MenuOutlined,
   SearchOutlined,
+  ReadOutlined,
 } from "@ant-design/icons";
 import { history } from "umi";
-import { useMount, useSize, useThrottleFn } from "ahooks";
+import { useSize, useThrottleFn } from "ahooks";
 import api from "./service";
 import _ from "lodash";
 
@@ -33,6 +34,14 @@ export default (props: { children: any }) => {
       onClick: (name: string) => {
         setActive(name);
         history.push(`/`);
+      },
+    },
+    {
+      name: "教程",
+      icon: <ReadOutlined />,
+      onClick: (name: string) => {
+        setActive(name);
+        history.push(`/course`);
       },
     },
     {
@@ -271,7 +280,7 @@ export default (props: { children: any }) => {
           }
         }}
       >
-        <div>Copyright © 2022 freenode.cn</div>
+        <div>Copyright © 2023 freenode.cn</div>
         <a
           className={styles.jumpMiit}
           onClick={() => {
